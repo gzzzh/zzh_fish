@@ -1,0 +1,90 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/forget_password.css" />
+<body>
+	<div class="land_top">
+		<div class="land_top_content clearfix">
+			<ul class="myfl">
+				<li class="myfl">
+					<h1>
+						<a href="/index">
+							<img src="{$Think.INDEX_STYLE}img/home/laqu_logo.png" /> </a>
+					</h1>
+				</li>
+				<li class="land_top_leftwire myfl"></li>
+				<li class="land_top_leftfont myfl" style="font-size: 14px;">找回密码</li>
+			</ul>
+			<ul class="myfr">
+				<li class="land_top_rightfont myfr" style="color: #999999;"> 已有账户，直接
+					<a href="/login" style="color: #C62F2F;margin-left: 5px;">登录</a>
+				</li>
+				<li class="land_top_rightwire myfr"></li>
+				<li class="land_top_rightfont myfr">
+					<a href="/reg">注册账号</a>
+				</li>
+				<li class="land_top_rightwire myfr"></li>
+				<li class="land_top_rightfont myfr">
+					<a href="/index">返回首页</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="retrieve_a_content">
+		<!--找回页面第一步的主要内容设置-->
+		<form id='forget_password_form'>		
+			<div class="retrieve_a_center">
+			<ul id="step1">
+				<li class="retrieve_a_centera">手机号码:
+					<input type="text" placeholder="请填写注册手机号" name="mobile" id="name_or_phone" 
+						onkeyup="checkForgetPhone()" maxlength="11"/>
+					<p class="name_error"></p>
+				</li>
+				<li class="retrieve_b_centerb"><span>验证码:</span>
+					<input type="text" 
+						name="vcode"
+						placeholder="请输入手机验证码" 
+						id="phone_code" 
+						maxlength="6"
+						onkeyup="checkForgetVcode()"> 
+					<div class="retrieve_b_text">
+            <button id="phoneCode" type="button" 
+            	style="cursor:pointer;" onclick="getForgetVode()">获取手机验证码</button>
+        	</div>
+        	<p class="name_error" id="forget_error"></p>
+				</li>
+				<li class="retrieve_a_centerb">
+					<button type="button" 
+						id="next_btn"
+						disabled="true"
+						class="step_btn_disable" 
+						onclick="checkForgetPhoenCode()">
+						下一步
+					</button>
+				</li>
+			</ul>
+			<ul id="step2" style="display: none;">
+				<li class="retrieve_a_centera">设置新密码:
+					<input type="password" 
+						name="pwd"
+						placeholder="请输入密码" 
+						id="password" 
+						onkeyup="checkForgetPassdword()"
+						maxlength="20">
+					<p class="name_error"></p>
+				</li>
+				<li class="retrieve_a_centera">确认密码:&ensp;&ensp;
+					<input type="password" 
+						placeholder="请再次输入密码" 
+						name="checkpsd"
+						id="repeat_password" 
+						onkeyup="checkForgetRepeatPassword()"
+						maxlength="11">
+					<p class="name_error"></p>
+				</li>
+				<li class="retrieve_a_centerb">
+					<button type="button" class="step_btn_disable" id="submit_btn" disabled>提交</button>
+				</li>
+			</ul>
+			</div>
+		</form>
+	</div>
+<script src="{$Think.INDEX_STYLE}js/login_register/user_register.js"></script> {include file="public/footer"/}

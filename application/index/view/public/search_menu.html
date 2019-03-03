@@ -1,0 +1,143 @@
+<div class="home_headerbag">
+	<div class="home_header clearfix">
+		<h1 class="myfl">
+			<a href="/index">
+				<img src="{$Think.FILE_PATH}upload/common/index_logo.png" style="width: 130px;height: 48px;">
+			</a>
+		</h1>
+		<div class="myfl search">
+			<form action="/item" method="get">
+				<input type="text" name="itemName" value="" placeholder="搜一个商品，开始立即申请吧！" class="content_input">
+				<input type="submit" value="" class="click_input"> </form>
+		</div>
+	</div>
+</div>
+<div class="nav_meun">
+	<div class="center clearfix">
+		<span class="classifymenuhover" style="cursor: pointer">全部分类
+			<div class="classifymenu" style="position: relative; z-index: 10; height: 306px;">
+				<div class="navigation_ganged">
+					<a class="fristCategoryName" href="/tasks"
+					 target="_blank">服装配饰</a>
+				</div>
+				<div class="navigation_ganged">
+					<a class="fristCategoryName" href="/tasks"
+					 target="_blank">鞋子箱包</a>
+					<!---->
+				</div>
+				<div class="navigation_ganged">
+					<a class="fristCategoryName" href="/tasks"
+					 target="_blank">文娱运动</a>
+					<!---->
+				</div>
+				<div class="navigation_ganged">
+					<a class="fristCategoryName" href="/tasks"
+					 target="_blank">珠宝首饰</a>
+					<!---->
+				</div>
+				<div class="navigation_ganged">
+					<a class="fristCategoryName" href="/tasks"
+					 target="_blank">数码家电</a>
+					<!---->
+				</div>
+				<div class="navigation_ganged">
+					<a class="fristCategoryName" href="/tasks"
+					 target="_blank">护肤彩妆</a>
+					<!---->
+				</div>
+				<div class="navigation_ganged">
+					<a class="fristCategoryName" href="/tasks"
+					 target="_blank">母婴用品</a>
+					<!---->
+				</div>
+				<div class="navigation_ganged">
+					<a class="fristCategoryName" href="/tasks"
+					 target="_blank">家纺日用</a>
+				</div>
+				<div class="navigation_ganged">
+					<a class="fristCategoryName" href="/tasks"
+					 target="_blank">车用周边</a>
+					<!---->
+				</div>
+			</div>
+		</span>
+		<a href="/index" class="">首页</a>
+		<a href="/item" class="activity">好货精选
+			<em style="color: #C62F2F">(新增 26156 件)</em>
+		</a>
+		<a href="/newer-activity" class="special">新人专享
+			<div style="display: inline-block;left: 16px;">
+				<!--<em style="float: none;font-size: 12px;">100% 中奖</em>-->
+				<img src="/img/base/zhongjiangtipgai.png"> </div>
+		</a>
+		<a href="/coin?coin" class="coin select">金币必中</a>
+		<a href="/item?pintuan=1&amp;jump=1&amp;shopType=&amp;itemCategoryId=&amp;sortType=ACTIVITY_RELEASE_DATE&amp;sortEnum=DESC&amp;itemType=REAL_TIME_LOTTERY"
+		 class="group">拼团开奖</a>
+		<a href="/item?jump=1&amp;shopType=&amp;itemCategoryId=&amp;sortType=&amp;sortEnum=DESC&amp;itemType=PIN_DUO_DUO&amp;pdd=1"
+		 class="group">拼多多</a>
+		<a href="/wealth/user/spokesman/topic">
+			<img src="/img/base/jiangicon.png" style="margin-right: 10px;margin-top: 6px;">邀请有奖</a>
+	</div>
+</div>
+<script type="text/javascript" charset="utf-8">
+			var nav_meunheight = $(".navigation_ganged")
+				.length * 34
+			$(".classifymenu")
+				.css('height', nav_meunheight + 'px')
+			var NavLinkSgin = $(".nav_meun .center")
+				.children("a"),
+				WebNavSginselected = $(".web_nav_sginselected");
+			if (location.href.indexOf("/index") >= 0) {
+				console.log("首页")
+			} else if (location.href.indexOf("/newer-activity") >= 0) { //新人专享
+				NavSginMethods();
+				WebNavSginselected.eq(0)
+					.removeClass("bagD42B5B");
+				WebNavSginselected.eq(2)
+					.addClass("bagD42B5B");
+				NavLinkSgin.eq(2)
+					.addClass("select");
+			} else if (location.href.indexOf("/item") >= 0 && location.href.indexOf("pintuan") < 0 && location.href.indexOf(
+					"pdd") < 0) { //好货精选
+				NavSginMethods();
+				WebNavSginselected.eq(0)
+					.removeClass("bagD42B5B");
+				WebNavSginselected.eq(1)
+					.addClass("bagD42B5B");
+				NavLinkSgin.eq(1)
+					.addClass("select");
+			} else if (location.href.indexOf("/coin") >= 0) { //金币必中
+				NavSginMethods();
+				WebNavSginselected.eq(0)
+					.removeClass("bagD42B5B");
+				WebNavSginselected.eq(3)
+					.addClass("bagD42B5B");
+				NavLinkSgin.eq(3)
+					.addClass("select");
+			} else if (location.href.indexOf("/coming") >= 0) { //积分商城
+				NavSginMethods();
+			} else if (location.href.indexOf("pintuan") >= 0) { //拼团开奖
+				NavSginMethods();
+				WebNavSginselected.eq(0)
+					.removeClass("bagD42B5B");
+				WebNavSginselected.eq(4)
+					.addClass("bagD42B5B");
+				NavLinkSgin.eq(4)
+					.addClass("select");
+			} else if (location.href.indexOf("pdd") >= 0) { //拼团开奖
+				NavSginMethods();
+				WebNavSginselected.eq(0)
+					.removeClass("bagD42B5B");
+				WebNavSginselected.eq(5)
+					.addClass("bagD42B5B");
+				NavLinkSgin.eq(5)
+					.addClass("select");
+			}
+
+			function NavSginMethods() {
+				for (var p = 0; p < 6; p++) {
+					NavLinkSgin.eq(p)
+						.removeClass("select")
+				}
+			}
+		</script>

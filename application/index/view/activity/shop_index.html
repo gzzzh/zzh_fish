@@ -1,0 +1,62 @@
+{include file="public/header"/} 
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/business_l.css" />
+</head>
+<body>
+	{include file="public/base_message_title"/}
+	<div class="userControl_bg" style="padding:20px 0 40px 0">
+		<div class="main userControl">
+			<!-- 主要内容 -->
+			<div class="clearfix">
+				<!--左侧下拉列表-->{include file="public/nav_menu"/}
+				<!---左侧内容结束----->
+				<!-- 右侧内容 -->
+				<div class="shopBind_right myfl">
+					<p class="publishing-activities">活动列表</p>
+					<table class="list-table">
+						<thead>
+							<tr>
+								<th>活动名称</th>
+								<th>开始时间</th>
+								<th>结束时间</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							{foreach name ='list' item ='vo'}
+								<tr>
+									<td width="">{$vo.product_name}</td>
+									<td>{$vo.begin_time}</td>
+									<td>{$vo.end_time}</td>
+									<td>{if condition="$vo.status eq 1"}待付款
+										{elseif condition="$vo.status eq 2"/}等待审核
+										{elseif condition="$vo.status eq 3"/}进行中
+										{elseif condition="$vo.status eq 4"/}已完成
+										{elseif condition="$vo.status eq 5"/}驳回
+										{elseif condition="$vo.status eq 6"/}关闭
+										{elseif condition="$vo.status eq 7"/}结算中
+										{/if}
+									</td>
+									<td>
+										{if condition="$vo.status eq 1"}
+											<a href="/tradeno/{$vo.id}"  target="_blank">去支付</a>
+											<a href="/editact/edit/{$vo.id}">编辑活动</a>
+											<a href="/delact/del/{$vo.id}">关闭活动</a>
+										{elseif condition="$vo.status eq 3"}
+										<a href="/task/details/{$vo.id}">查看详情</a>
+											<a href="/closact/closing/{$vo.id}">结算</a>
+										{/if}
+									</td>
+								</tr>
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
+				<div>
+					当前页: {$page}
+					总数量: {$taskCount.counts}
+					总页数: {$taskCount.pageCount}
+				</div>
+			</div>
+		</div>
+	</div> {include file="public/footer"/}

@@ -1,0 +1,160 @@
+{include file="public/left" /}
+<!--/sidebar-->
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:url('admin/Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">商家管理</span></div>
+    </div>
+    <div class="search-wrap">
+        <div class="search-content">
+            <form action="{:url('admin/user/shopUserIndex')}" id="myform" name="myform" method="post">
+                <table class="search-tab">
+                    <tr>
+                        <td width="70">手机号:</td>
+                        <td><input class="common-text" placeholder="手机号" name="mobile" type="text" value="{$mobile|default=''}"></td>
+
+                        <td width="70">ID:</td>
+                        <td><input class="common-text" placeholder="ID" name="id" type="text" value="{$id|default=''}"></td>
+
+                        <td><input class="btn btn-primary btn2"  value="查询" type="submit"></td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+    </div>
+    <div class="result-wrap">
+        <div class="result-content">
+            <table class="result-tab" width="100%">
+                <tr>
+                    <th>ID</th>
+                    <th>手机号</th>
+                    <th>会员姓名</th>
+                    <th>用户类型</th>
+                    <th>账户余额</th>
+                    <th>冻结金钱</th>
+                    <th>淘宝店铺绑定</th>
+                    <th>支付宝绑定</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                {foreach name='list' id='vo'}
+                <tr>
+                    <td>{$vo['id']}</td>
+                    <td>{$vo['mobile']}</td>
+                    <td>{$vo['user_nickname']}</td>
+                    <td>
+                        {if condition="$vo['user_type'] eq 1"}用户
+                        {else/}
+                        商家
+                        {/if}
+                    </td>
+                    <td>{$vo['money']}</td>
+                    <td>{$vo['frozen_money']}</td>
+                    <td>
+                        {if condition="$vo['taobao_status'] eq 0"}未绑定
+                        {elseif condition="$vo['taobao_status'] eq 1"} 已绑定
+                        {else/}
+                        审核中
+                        {/if}
+                    </td>
+
+                    <td>
+                        {if condition="$vo['alipay_status'] eq 0"}未绑定
+                        {elseif condition="$vo['alipay_status'] eq 1"} 已绑定
+                        {else/}
+                        审核中
+                        {/if}
+                    </td>
+
+                    <td>
+                        {if condition="$vo['status'] eq 1"}正常
+                        {else/}
+                        封号中
+                        {/if}
+                    </td>
+
+
+                    <td>
+                        <a href="{:url('admin/User/detail',['id' => $vo['id']])}">用户详情</a>
+                        &nbsp;&nbsp;
+                        <a class="link-del" href="{:url('admin/User/editStatus',['id' => $vo['id']])}}" onClick="return confirm('确定操作用户?');">
+                            {if condition="$vo['status'] eq 1"}封号
+                            {else/}解封
+                            {/if}
+                        </a>
+                    </td>
+                </tr>
+                {/foreach}
+            </table>
+            <div class="list-page"> <ul>{$page}</ul></div>
+
+        </div>
+    </div>
+</div>
+<!--/main-->
+</div>
+<script>
+    //点击停用
+    $('.userstop').off('click').on('click', function(){
+        if(confirm('确定停用该用户？')){
+            $.get('/admin/Member/userstop',{member_id:$(this).attr('mid'), status:2},function(rest){
+                alert(rest.msg);
+                window.location.reload();
+            });
+        }
+    });
+    //点击启用
+    $('.uservalid').off('click').on('click', function(){
+        if(confirm('确定启用该用户？')){
+            $.get('/admin/Member/userstop',{member_id:$(this).attr('mid'), status:1},function(rest){
+                alert(rest.msg);
+                window.location.reload();
+            });
+        }
+    });
+
+    function add_robot(){
+        html=$('#addrobot').html();
+        layer.open({
+            title: '<h2>增加机器用户</h2>',
+            content:html ,
+            btn: ['确定', '取消'],
+            yes: function(index, layero){
+                var robot_num =  $('#robot_num').val();
+                //var robot_prefix = $('#robot_prefix').val();     ,robot_prefix:robot_prefix
+                $.post('/admin/Member/addrobot',{robot_num:robot_num},function(rst){
+                    layer.msg(rst.msg, {time:2000},function(){
+                        if(rst.status == 1){
+                            $("#is_robot").val("1");
+                            document.myform.submit();
+                        }
+                    });
+                },'json');
+            }
+        });
+    }
+
+    function download(){
+        var type = $("#type option:selected").attr('value');
+        var is_robot = $("#is_robot option:selected").attr('value');
+        var email=$('input[name="email"]').val();
+        var member_id=$('input[name="member_id"]').val();
+        var show_uid = $('input[name="show_uid"]').val();
+        var params = {email,member_id,show_uid,is_robot,type};
+        var param_str = '';
+        Object.keys(params).forEach(function(key,index){
+            if(params[key]){
+                param_str += `${key}=${params[key]}&`;
+            }
+        });
+        param_str = param_str.substr(0, param_str.length - 1);
+        var url="Member/output_member";
+        window.location.href=url+"?"+param_str;
+    }
+
+    $('input[name="download"]').off('click').on('click', function(){
+        download();
+    });
+</script>
+</body>
+</html>

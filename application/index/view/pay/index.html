@@ -1,0 +1,111 @@
+{include file="public/header"/} 
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/business_l.css" /> </head>
+</head>
+<body>
+	{include file="public/top_nav_menu"/}
+{include file="public/base_message_title"/}
+	<div class="userControl_bg" style="padding:20px 0 40px 0">
+		<div class="main userControl">
+			<!-- 主要内容 -->
+			<div class="clearfix">
+				<!--左侧下拉列表-->{include file="public/nav_menu"/}
+				<!---左侧内容结束----->
+				<!-- 右侧内容 -->
+					<div class="shopBind_right myfl">
+						<p class="myfr" style="background: #fff; width: 920px;height: 85px;line-height: 86px;font-size: 20px;color: #333;border-bottom: 1px solid #eaeaea;">账户提现</p>
+						<p class="balance" style="padding-left: 155px;">余额： <span>{$user.money}</span></p>
+						<p class="balance">冻结金额： <span>{$user.frozen_money}</span></p>
+						<div>
+							<form action="/ty/txcheck" id="myform" method="post" >
+								<table border="0" cellspacing="0" cellpadding="0" class="insert-tab">
+									<tr>
+										<td>选择收款账号：</td>
+										<td>
+											<select name="cash_alipay_username" required>
+												<option value="{$aliInfo.account}">{$aliInfo.account}</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>提现金额：</td>
+										<td><input type="text" name="money" placeholder="请输入提现金额" required> 
+										<span class="tips">*最小提现额100元</span></td>
+									</tr>
+									<tr>
+										<td>手机验证码：</td>
+										<td class="vcodes">
+											<input type="text" name="vcode" placeholder="请输入手机验证码" required>
+											<input type="button" value="手机验证码" 
+												class="banbal_send_code" id='banbal_send_code'/>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="submit" name="提交"/></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+						<p class="withdrawals_record">提现记录</p>
+						<table class="list-table">
+							<thead>
+								<tr>
+									<th>提现账号[支付宝]</th>
+									<th>提现金额</th>
+									<th>状态</th>
+									<th>审核时间</th>
+								</tr>
+							</thead>
+							<tbody>
+								{foreach name="list" item="vo"}
+									<tr>
+										<td>{$vo.cash_alipay_username}</td>
+										<td>{$vo.money}</td>
+										<td>
+											{if condition="$vo.status eq -1"}
+												未通过审核
+											{elseif condition="$vo.status eq 0"}
+												等待审核
+											{elseif condition="$vo.status eq 1"}
+												已提现
+											{/if}
+										</td>
+										<td>{$vo.check_time}</td>
+									</tr>
+								{/foreach}
+							</tbody>
+						</table>
+						<div class="record_page">页码{$page}  总数据{$cNumber}  总页数{$cPage}</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+	<script>
+		var BASE_API = 'http://39.108.99.113/';
+		$('#banbal_send_code').on('click', function () {
+			var index = 60;
+		  $('#banbal_send_code').attr('disabled', true);
+		  var timer = setInterval(function () {
+		    index --;
+		    if (index <= -1) {
+		      clearInterval(timer);
+		      $('#banbal_send_code').val('手机验证码');
+		      $('#banbal_send_code').attr('disabled', false);
+		      return false;
+		    }
+		    $('#banbal_send_code').val( index + '秒后重发');
+		  }, 1000);
+		  $.ajax({
+		  	type:"post",
+		  	url:BASE_API + "ty/sendTxSms",
+		  	success: function (response) {
+		  		response = JSON.parse(response);
+		  		if (response.code !== 0) {
+		  			 clearInterval(timer);
+				      $('#banbal_send_code').val('手机验证码');
+				      $('#banbal_send_code').attr('disabled', false);
+		  		}
+		  	}
+		  });
+		});
+	</script>{include file="public/footer"/}

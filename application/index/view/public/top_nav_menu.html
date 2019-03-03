@@ -1,0 +1,45 @@
+<div class="web_nav">
+	<div class="nav_center clearfix">
+		{if condition="$Request.session.USER_KEY_ID neq null"}
+		<p class="myfl">
+			<span>
+				<span class="personnews-user">
+					<span class="personnews-user_name" style="cursor: pointer;">{$mobile|default=''}</span>
+					<span class="personnews-user_link">
+						<span class="clearfix" style="margin-bottom: 24px;">
+						{present name='user_type'}
+							{if condition="$user_type eq 1"}
+								<a href="/uc" class="myfl">用户中心</a>
+							{else/} 
+								<a href="/biz/index" class="myfl">商家中心</a>
+							{/if}
+						{/present}
+							<a href="/wealth/user/spokesman/topic" class="myfr">邀请奖10元</a>
+						</span>
+						<span class="clearfix">
+							<a href="/loginout" class="myfl">退出</a>
+						</span>
+					</span>
+				</span>
+			</span>
+			<i>|</i>
+			<a href="/notice" id="web_notice_numbox">通知（
+				<span class="web_notice_num">2</span>）</a>
+		</p>
+		{else /}
+			<p class="myfl">
+				<a href="/login" class="">登录</a>
+				<i>|</i>
+				<a href="/reg">注册</a>
+			</p>
+		{/if}
+		
+		<p class="myfr">
+			<a href="/index">小鱼试用</a>
+			<i>|</i>
+			<a href="/notice">公告</a>
+			<i>|</i>
+			<a href="/wealth/user/spokesman/topic">邀请有奖</a>
+		</p>
+	</div>
+</div>

@@ -1,0 +1,82 @@
+{include file="public/header"/}
+<link rel="stylesheet" type="text/css" href="{$Think.INDEX_STYLE}css/login_register/login.css">
+	<body>
+		<div class="login_header">
+			<div class="header_center clearfix">
+				<div class="myfl">
+					<a href="/index">
+						<img src="{$Think.INDEX_STYLE}img/home/laqu_logo.png" />
+					</a>
+					<span>欢迎登录</span>
+				</div>
+				<div class="myfr">
+					<a href="/index">返回首页</a>
+				</div>
+			</div>
+		</div>
+		<div class="login_content clearfix">
+			<input type="hidden" id="memberType" value="" />
+			<form action="/logincheck" method="post" id="login_form">
+				<input type="hidden" name="memberType" id="parameter" value="1" />
+				<input type="hidden" value="" class="logiontype">
+				<div class="login_box myfr">
+					<p class="system_error"></p>
+					<div class="passwordsand">
+						<p class="login_input">
+							<span style="display: inline-block;height: 46px;width: 25px;background: url(/static/index/img/login_register/username_bg.png) no-repeat left center;vertical-align: top">
+							</span>
+							<input type="text" 
+								name="mobile" 
+								value="" 
+								style="width: 248px;border-bottom: none;padding-left: 0px;margin-left: 0;background: none"
+							  placeholder="手机号/用户名" 
+							  onkeyup="checkPhone()"
+							  maxlength="11"
+							  id="username" /> 
+						</p>
+						<p class="login_input">
+							<span style="display: inline-block;height: 46px;width: 25px;background: url(/static/index/img/login_register/password_bg.png) no-repeat left center;vertical-align: top">
+							</span>
+							<input 
+								type="password" 
+								placeholder="登录密码" 
+								id="password" 
+								name="psd" 
+								maxlength="18"
+								value="" 
+								onkeyup="checkLoginPassword(this.value)"
+								style="width: 248px;border-bottom: none;padding-left: 0px;margin-left: 0;background: none"/>
+						</p>
+						<p class="login_input" style="position: relative;">
+							<span style="display: inline-block;height: 46px;width: 25px;background: url(/static/index/img/login_register/password_bg.png) no-repeat left center;vertical-align: top">
+							</span>
+							<input 
+								type="text" 
+								placeholder="验证码"
+								name="vcode"
+								id="loginVcode"
+								onkeyup="checkLoginVcode()"
+								value="" 
+								maxlength="6"
+								style="width: 248px;border-bottom: none;padding-left: 0px;margin-left: 0;background: none"/>
+								<button class="myfr go_phone" type="button" id="phoneCode" onclick="getLoginPhoneCode()">手机验证码登录</button>
+						</p>
+						<p class="username_error" id='error_message'></p>
+					</div>
+					<input type="button" 
+						value="立即登录"
+						id="login_btn"
+						class="submit_btn btn_disabled" 
+						onclick="login()">
+					<div class="entry_mode clearfix">
+						<a href="/forget" class="myfl">忘记密码？</a>
+						<p class="myfr">
+							<span>没有账号？</span>
+							<a href="/reg"> 注册 </a>
+						</p>
+					</div>
+				</div>
+			</form>
+		</div>
+		<script src="{$Think.INDEX_STYLE}js/login_register/user_register.js"></script>
+{include file="public/footer"/}

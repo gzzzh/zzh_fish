@@ -1,0 +1,99 @@
+{include file="public/left" /}
+<!--/sidebar-->
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:url('admin/Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">用户管理</span></div>
+    </div>
+    <div class="search-wrap">
+        <div class="search-content">
+            <form action="{:url('admin/user/index')}" id="myform" name="myform" method="post">
+                <table class="search-tab">
+                    <tr>
+                        <td width="70">手机号:</td>
+                        <td><input class="common-text" placeholder="手机号" name="mobile" type="text" value="{$mobile|default=''}"></td>
+
+                        <td width="70">ID:</td>
+                        <td><input class="common-text" placeholder="ID" name="id" type="text" value="{$id|default=''}"></td>
+
+                        <td><input class="btn btn-primary btn2"  value="查询" type="submit"></td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+    </div>
+    <div class="result-wrap">
+        <div class="result-content">
+            <table class="result-tab" width="100%">
+                <tr>
+                    <th>ID</th>
+                    <th>手机号</th>
+                    <th>会员姓名</th>
+                    <th>用户类型</th>
+                    <th>账户余额</th>
+                    <th>冻结金钱</th>
+                    <th>淘宝绑定</th>
+                    <th>支付宝绑定</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                {foreach name='list' id='vo'}
+                <tr>
+                    <td>{$vo['id']}</td>
+                    <td>{$vo['mobile']}</td>
+                    <td>{$vo['user_nickname']}</td>
+                    <td>
+                        {if condition="$vo['user_type'] eq 1"}用户
+                        {else/}
+                        商家
+                        {/if}
+                    </td>
+                    <td>{$vo['money']}</td>
+                    <td>{$vo['frozen_money']}</td>
+                    <td>
+                        {if condition="$vo['taobao_status'] eq 0"}未绑定
+                        {elseif condition="$vo['taobao_status'] eq 1"} 已绑定
+                        {else/}
+                        审核中
+                        {/if}
+                    </td>
+
+                    <td>
+                        {if condition="$vo['alipay_status'] eq 0"}未绑定
+                        {elseif condition="$vo['alipay_status'] eq 1"} 已绑定
+                        {else/}
+                        审核中
+                        {/if}
+                    </td>
+
+                    <td>
+                        {if condition="$vo['status'] eq 1"}正常
+                        {else/}
+                        封号中
+                        {/if}
+                    </td>
+
+
+                    <td>
+                        <a href="{:url('admin/User/detail',['id' => $vo['id']])}">用户详情</a>
+                        &nbsp;&nbsp;
+                        <a class="link-del" href="{:url('admin/User/editStatus',['id' => $vo['id']])}}" onClick="return confirm('确定操作用户?');">
+                            {if condition="$vo['status'] eq 1"}封号
+                            {else/}解封
+                            {/if}
+                        </a>
+                    </td>
+                </tr>
+                {/foreach}
+            </table>
+            <div class="list-page"> <ul>{$page}</ul></div>
+
+        </div>
+    </div>
+</div>
+<!--/main-->
+</div>
+<script>
+</script>
+</body>
+</html>

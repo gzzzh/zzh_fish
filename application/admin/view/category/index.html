@@ -1,0 +1,62 @@
+{include file="public/left" /}
+<!--/sidebar-->
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:url('admin/Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">活动分类管理</span></div>
+    </div>
+
+    <div class="result-wrap">
+        <div class="result-title">
+            <div class="result-list">
+                <a href="{:url('admin/category/add')}"><i class="icon-font"></i>新增分类</a>
+            </div>
+        </div>
+        <div class="result-content">
+            <table class="result-tab" width="100%">
+                <tr>
+                    <th>分类名</th>
+                    <th>分类图片</th>
+                    <th>分类描述</th>
+                    <th>排序</th>
+                    <th>是否显示</th>
+                    <th>添加时间</th>
+                    <th>操作</th>
+                </tr>
+
+                {foreach name='list' id='vo'}
+                <tr>
+                    <td>{$vo['catname']}</td>
+                    <td><img src="/{$vo['image']}" width="50px" height="50px"></td>
+                    <td>{$vo['description']}</td>
+                    <td>{$vo['sort']}</td>
+
+
+                    <td>
+                        {if condition="$vo['ismenu'] eq 1"}显示
+                        {else/}不显示
+                        {/if}
+                    </td>
+                    <td>{$vo['add_time']}</td>
+
+
+
+
+                    <td>
+                        <a href="{:url('admin/category/add',['id' => $vo['id']])}">编辑</a>
+                        &nbsp;&nbsp;
+                        <a class="link-del" href="{:url('admin/category/del',['id' => $vo['id']])}}" onClick="return confirm('确定操作数据?');">删除</a>
+                    </td>
+                </tr>
+                {/foreach}
+            </table>
+            <div class="list-page"> <ul></ul></div>
+
+        </div>
+    </div>
+</div>
+<!--/main-->
+</div>
+<script>
+</script>
+</body>
+</html>

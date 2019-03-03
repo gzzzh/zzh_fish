@@ -1,0 +1,112 @@
+{include file="public/left" /}
+<link rel="stylesheet" href="{$Think.DS}admin/js/layer/viewwe.min.css" />
+<script type="text/javascript" src="{$Think.DS}admin/js/layer/viewer.min.js"></script>
+<!--<script type="text/javascript" src="/Public/js/layer/layer.js"></script>-->
+<!--/sidebar-->
+<div class="main-wrap">
+
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:url('admin/Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">用户淘宝审核列表</span></div>
+    </div>
+    <div class="search-wrap">
+        <div class="search-content">
+            <form action="{:url('admin/Audit/userTaobaoList')}" method="get">
+                <table class="search-tab">
+                    <tr>
+                        <td>
+                            <select name="status" id="seleceds" value="">
+                                <option value="10">所有状态</option>
+                                <option value="1" {if condition="1"}selected{/if}>等待审核</option>
+                                <option value="2" {if condition="2"}selected{/if}>通过认证</option>
+                                <option value="3" {if condition="3"}selected{/if}>驳回</option>
+                            </select>
+                        </td>
+                        <td><input class="common-text" placeholder="手机号进行搜索" value="{$uid|default=''}" name="uid" type="text" id="search"/></td>
+                        <td><input class="btn btn-primary btn2"  value="搜索" type="submit"/></td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+    </div>
+    <div class="result-wrap">
+        <div class="result-content">
+            <table class="result-tab" width="100%">
+                <tr>
+                    <th>上传时间</th>
+                    <th>用户UID</th>
+                    <th>淘宝账号</th>
+                    <th>淘宝账号截图</th>
+                    <th>淘气值</th>
+                    <th>淘气值截图</th>
+                    <th>性别</th>
+                    <th>出生年份</th>
+                    <th>状态</th>
+                    <th>初审时间</th>
+                    <th>审核人</th>
+                    <th>操作</th>
+                </tr>
+                <tbody id="list">
+                {foreach name='list' item='vo'}
+                    <tr>
+                        <td>{$vo['add_time']}</td>
+                        <td>{$vo['userid']}</td>
+                        <td>{$vo['account']}</td>
+                        <td class="idcards">
+                            <a href="/{$vo.account_imgs}" target="_blank"><img src="/{$vo.account_imgs}"/></a>
+                        </td>
+                        <td>{$vo['price_value']}</td>
+                        <td class="idcards">
+                            <a href="/{$vo.price_imgs}" target="_blank"><img src="/{$vo.price_imgs}"/></a>
+                        </td>
+                        <td>{$vo.sex}</td>
+                        <td>{$vo.birth_year}</td>
+                        <td>
+                            {if condition="$vo.status eq 1"}<span>待审核
+                            {elseif condition="$vo.status eq 2"}<span style="color: green">通过审核
+                            {else/}
+                            <span style="color: red">驳回
+                            {/if}
+                            </span>
+                        </td>
+
+                        <td>
+                            {if condition="$vo.audit_time eq 0"}/
+                            {else/}
+                            {$vo.audit_time}
+                            {/if}
+                        </td>
+
+                        <td>{$vo.nickname|default=''}</td>
+
+                        <td>
+                            {if condition="$vo.status eq 1"}
+                            <a href="{:url('admin/Audit/pass',['id' => $vo['id'],'userid' => $vo['userid'],'type' => 'pass'])}">通过</a>
+                            <a href="{:url('admin/Audit/pass',['id' => $vo['id'],'userid' => $vo['userid'],'type' => 'pass'])}">驳回</a>
+                            {/if}
+                        </td>
+
+                    </tr>
+                {/foreach}
+        </div>
+        </tbody>
+        </table>
+        <div class="list-page"> <ul>{$page}</ul></div>
+    </div>
+
+</div>
+</div>
+<!--/main-->
+</div>
+
+
+<div id="hides"></div>
+</body>
+</html>
+<script>
+    function checkimg(id){
+        var viewer = new Viewer(document.getElementById(id), {
+            url: 'data-original'
+        });
+    }
+</script>

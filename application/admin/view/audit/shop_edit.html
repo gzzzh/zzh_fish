@@ -1,0 +1,75 @@
+{include file="public/left" /}
+<!--/sidebar-->
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:url('admin/Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">{$info? '编辑' : '添加'}店铺信息</span></div>
+    </div>
+    <div class="result-wrap">
+        <form action="{:url('admin/audit/saveShops')}" method="post" id="myform" name="myform" enctype="multipart/form-data">
+            <div class="config-items">
+                <div class="config-title">
+                    <h1><i class="icon-font">&#xe00a;</i>{$info? '编辑店铺' : '添加店铺'}</h1>
+                </div>
+                <div class="result-content">
+                    <table width="100%" class="insert-tab">
+                        <tbody>
+                        <input type="hidden" name="id" value="{$info.id|default=''}"/>
+                        <tr>
+                            <th><i class="require-red">*</i>店铺名称：</th>
+                            <td><input type="text"  value="{$info.store_name|default=''}" size="85" name="store_name" class="common-text"></td>
+                        </tr>
+                        <tr>
+                            <th width="15%"><i class="require-red">*</i>旺旺名称：</th>
+                            <td><input type="text"  value="{$info.wang_name|default=''}" size="85" name="wang_name" class="common-text"></td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>店铺链接：</th>
+                            <td><input type="text"  value="{$info.store_url|default=''}" size="85" name="store_url" class="common-text"></td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>店铺QQ号：</th>
+                            <td><input type="text"  value="{$info.store_qq|default=''}" size="85" name="store_qq" class="common-text"></td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>手机号：</th>
+                            <td><input type="text"  value="{$info.mobile|default=''}" size="40" name="mobile" class="common-text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>店铺状态：</th>
+                            <td>
+                                {if condition="$info.shop_status eq 1"}
+                                    等待审核
+                                {elseif condition="$info.shop_status eq 2"}
+                                    通过
+                                {elseif condition="$info.shop_status eq 3"}
+                                    驳回
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>添加时间：</th>
+                            <td>{$info.add_time|default=''}</td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input type="submit" value="提交" class="btn btn-primary btn6 mr10">
+                                <a href="{:url('admin/audit/shopsTaobaoList')}"><input type="button" value="返回"  class="btn btn6"></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!--/main-->
+</div>
+</body>
+</html>
+<script>
+</script>

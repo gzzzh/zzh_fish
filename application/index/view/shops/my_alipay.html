@@ -1,0 +1,38 @@
+{include file="public/header"/} </head>
+<body>
+	{include file="public/base_message_title"/}
+	<div class="userControl_bg" style="padding:20px 0 40px 0">
+		<div class="main userControl">
+			<!-- 主要内容 -->
+			<div class="clearfix">
+				<!--左侧下拉列表-->{include file="public/nav_menu"/}
+				<!---左侧内容结束----->
+				<!-- 右侧内容 -->
+
+					<div class="shopBind_right myfl">
+						<div class="shopBind_right_prompt clearfix">
+							<p class="myfr" style="background: #fff; width: 920px;height: 85px;line-height: 86px;font-size: 20px;color: #333;border-bottom: 1px solid #eaeaea;">选择店铺类型</p>
+							<div class="myfr">
+								
+								<ul class="shopManage_title clearfix">
+									<li class="shopManage_title_a myfl">店铺类型</li>
+									<li class="shopManage_title_b myfl" style="width: 170px;">店铺名称</li>
+									<li style="width: 160px; display: block;" class="myfl typeshow">旺旺名称</li>
+									<li class="shopManage_title_c myfl" style="width: 170px;">负责人联系方式</li>
+									<li class="shopManage_title_d myfl">绑定时间</li>
+									<li class="shopManage_title_e myfl">状态</li>
+								</ul>
+								<ul class="shopManage_bottom clearfix">
+									<input type="hidden" value="$sellerShops.length" id="NNNNN">
+									<li class="shopManage_bottom_b myfr">
+										<a href="/shop/toAddShop?shopType=1&amp;addShopType=1">绑定店铺</a>
+									</li>
+									<!---->
+								</ul>
+							</div>
+						</div>
+
+				</div>
+			</div>
+		</div>
+	</div> {include file="public/footer"/}

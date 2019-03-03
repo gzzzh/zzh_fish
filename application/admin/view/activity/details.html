@@ -1,0 +1,113 @@
+{include file="public/left" /}
+<link rel="stylesheet" href="{$Think.DS}admin/js/layer/viewwe.min.css" />
+<script type="text/javascript" src="{$Think.DS}admin/js/layer/viewer.min.js"></script>
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:url('admin/Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">活动详情</span></div>
+    </div>
+    <div class="result-wrap">
+        <div class="result-title">
+            <div class="result-list">
+                <p><h2>活动信息</h2></p>
+            </div>
+        </div>
+        <div class="result-content">
+            <table class="result-tab" style="width:100%;border-style:none;rules;none;">
+                <tr>
+                    <td style="width:10%;text-align:left;">活动发布UID：</td>
+                    <td style="width:40%;text-align:left;">{$info['userid']}</td>
+
+                    <td style="width:10%;text-align:left;">店铺名称：</td>
+                    <td style="width:40%;text-align:left;">
+                        {$info['store_name']}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width:10%;text-align:left;">活动分类</td>
+                    <td style="width:40%;text-align:left;">{$info['category_name']}</td>
+
+                    <td style="width:10%;text-align:left;">活动名称：</td>
+                    <td style="width:40%;text-align:left;">{$info['product_name']|default='/'}</td>
+                </tr>
+
+                <tr>
+                    <td style="width:10%;text-align:left;">活动链接</td>
+                    <td style="width:40%;text-align:left;">
+                        {$info['product_link']}
+                    </td>
+
+                    <td style="width:10%;text-align:left;">活动价格：</td>
+                    <td style="width:40%;text-align:left;">
+                        {$info['product_price']}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width:10%;text-align:left;">收藏链接：</td>
+                    <td style="width:40%;text-align:left;">{$info['collect_url']|default="/"}</td>
+
+                    <td style="width:10%;text-align:left;">任务次数：</td>
+                    <td style="width:40%;text-align:left;">{$info['num']|default="/"}</td>
+
+                </tr>
+                <tr>
+                    <td style="width:10%;text-align:left;">开始-结束时间：</td>
+                    <td style="width:40%;text-align:left;">{$info['begin_time']} —— {$info['end_time']}</td>
+
+                    <td style="width:10%;text-align:left;">商铺平台：</td>
+                    <td style="width:40%;text-align:left;">{if condition="$info['type'] eq 1"}淘宝
+                        {else/}京东
+                        {/if}</td>
+                </tr>
+
+                <tr>
+                    <td style="width:10%;text-align:left;">活动状态：</td>
+                    <td style="width:40%;text-align:left;">{if condition="$info['status'] eq 1"}<span style="color: pink">待付款</span>
+                        {elseif condition="$info['status'] eq 2"} <span style="color: red">已付款待审核</span>
+                        {elseif condition="$info['status'] eq 3"} <span style="color: darkorange">进行中</span>
+                        {elseif condition="$info['status'] eq 4"} <span style="color: sandybrown">已完成</span>
+                        {elseif condition="$info['status'] eq 5"}<span style="color: red">驳回</span>
+                        {else/}
+                        失效
+                        {/if}</td>
+
+                    <td style="width:10%;text-align:left;">提交时间：</td>
+                    <td style="width:40%;text-align:left;">
+                        {$info['create_time']}
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width:10%;text-align:left;">订单编号：</td>
+                    <td style="width:40%;text-align:left;">{$info['order_no']}</td>
+
+                    <td style="width:10%;text-align:left;">保证金：</td>
+                    <td style="width:40%;text-align:left;">{$info['deposit']|default="/"}</td>
+                </tr>
+
+                <tr>
+                    <td style="width:10%;text-align:left;">推广费用：</td>
+                    <td style="width:40%;text-align:left;">{$info['service']}</td>
+
+                    <td style="width:10%;text-align:left;">/：</td>
+                    <td style="width:40%;text-align:left;">/</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="result-wrap">
+        <div class="result-title">
+            <div class="result-list">
+                <p></p>
+            </div>
+            <div class="result-list">
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+</script>

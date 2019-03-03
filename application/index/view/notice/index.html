@@ -1,0 +1,22 @@
+{include file="public/header"/} 
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/user.css" />
+</head>
+{include file="public/top_nav_menu"/} 
+<body>
+		<div class="userControl_bg" style="padding:20px 0 40px 0;">
+			<div class="main userControl" style="background: #FFF;min-height: 300px;">
+				<h5 class="notice-title">最新公告</h5>
+				<ul class="notice-ul">
+					{foreach $list as $vo}
+						<li>
+							<a href="/notices/{$vo.id}">
+								{$vo.title}
+								
+							</a>
+							<span>{$vo.publish_time}</span>
+						</li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+	{include file="public/footer"/}

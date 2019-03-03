@@ -1,0 +1,94 @@
+{include file="public/left" /}
+<script type="text/javascript" charset="utf-8" src="{$Think.DS}admin/kindeditor/kindeditor.js"></script>
+<script type="text/javascript" charset="utf-8" src="{$Think.DS}admin/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript" charset="utf-8" src="{$Think.DS}admin/kindeditor/plugins/code/prettify.js"></script>
+<!--/sidebar-->
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:url('admin/Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">公告管理</span></div>
+    </div>
+    <div class="result-wrap">
+        <form action="{:url('admin/Notice/save')}" method="post" id="myform" name="myform" enctype="multipart/form-data">
+            <div class="config-items">
+                <div class="config-title">
+                    <h1><i class="icon-font">&#xe00a;</i>{$info? '编辑公告' : '添加公告'}</h1>
+                </div>
+                <div class="result-content">
+                    <table width="100%" class="insert-tab">
+                        <tbody>
+
+                        <input type="hidden" name="id" value="{$id|default=''}"/>
+                        <tr>
+                            <th><i class="require-red">*</i>公告标题：</th>
+                            <td><input type="text"  value="{$info.title|default=''}" size="85" name="title" class="common-text"></td>
+                        </tr>
+
+                        <tr>
+                            <th><i class="require-red">*</i>简介：</th>
+                            <td><input type="text"  value="{$info.intro|default=''}" size="85" name="intro" class="common-text"></td>
+                        </tr>
+
+                        <tr>
+                            <th><i class="require-red">*</i>排序：</th>
+                            <td><input type="text"  value="{$info.sort|default=''}" size="28" name="sort" class="common-text">
+                                默认为最后面
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>状态：</th>
+                            <td>
+                                <select name="status" style="width: 200px;height: 29px;">
+
+                                    {empty name="$info"}
+                                    <option value="1">上线</option>
+                                    <option value="2">下线</option>
+                                    {else/}
+                                    <option value="1" {if condition='$info.status eq 1'}selected{/if}>上线</option>
+                                    <option value="2" {if condition='$info.status eq 2'}selected{/if}>下线</option>
+                                    {/empty}
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th><i class="require-red">*</i>内容：</th>
+                            <td>
+                                <textarea id="content" name="content" cols="30" style="width:1000px;height:600px;" rows="10">{$info.content|default=''}</textarea>
+                                <script>
+                                    KindEditor.ready(function(K) {
+                                        window.editor = K.create('#content',{
+                                            imageTabIndex:1,//显示网络图片选项（0），显示本地图片（1）
+                                            uploadJson : 'http://www.xianzhibao.com/admin/Index/uploadImgs',//标识处理图片的文件
+                                            afterUpload:function (url){
+                                                console.log(url)
+                                            },
+                                            pasteType:1,//粘贴方式：0 禁止，1 纯文本，2 html粘贴
+                                            newlineTag:'p',
+                                            allowUpload:false
+                                        });
+                                    });
+                                </script>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input type="submit" value="提交" class="btn btn-primary btn6 mr10">
+                                <a href="{:url('admin/Notice/index')}"><input type="button" value="返回"  class="btn btn6"></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!--/main-->
+</div>
+</body>
+</html>
+<script>
+</script>

@@ -1,0 +1,72 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/userJ.css" /> </head>
+<body> 
+	{include file="public/top_nav_menu"/}
+	{include file="public/base_message_title"/}
+	<div class="clearfix main" style="margin-top: 20px">
+		<!--左侧下拉列表-->{include file="public/nav_menu"/}
+		<!---左侧内容结束----->
+		<!-- 右侧内容 -->
+		<div class="fundNews_right myfr" style="height: auto;">
+			<span class="fundNews_right_title">账户充值</span>
+			<!--<ul class="userRecharge clearfix">-->
+			<!--<li class="myfl cur user_recharge_VIP">充值VIP会员</li>-->
+			<!--&lt;!&ndash;<li class="myfl userRecharge_style"></li>&ndash;&gt;-->
+			<!--&lt;!&ndash;<li class="myfl cur user_recharge_gold">金币充值</li>&ndash;&gt;-->
+			<!--&lt;!&ndash;<span></span>&ndash;&gt;-->
+			<!--</ul>-->
+			<!--webskoct所需要的数据。-->
+			<input type="hidden" id="orderNo" value="2071902237251286627">
+			<div class="userRecharge_content clearfix">
+				<div class="userAlipay">
+					<ul class="userAlipay_notice">
+						<span style="margin-top: 20px;">注意：</span>
+						<li>请勿在支付宝备注中填写任何关于刷单、刷销量、领商品之类的备注，否则视为违规，将不提供任何网站服务。</li>
+						<li>会员或金币充值成功之后概不支持退款！</li>
+					</ul>
+					<div class="pay_bao">
+						<p style="color: #333;font-size: 18px;text-align: center;line-height: 95px">请仔细核对支付宝收款账号：
+							<span style="color: #ff0000;margin-right: 40px;">{$user.account}</span> 收款账号姓名：
+							<span style="color: #ff0000">{$user.name}</span>
+						</p>
+						<img src="{$user.imgs}" alt="" style="display: block;margin: 0 auto;margin-top: 23px;width: 200px;"> 
+					</div>
+					<h3 class="userAlipay_account pay_card_tip">打款后，请您把交易流水号和打款金额填入下方并提交：</h3>
+					<div class="transaction_number pay_bao">
+						<div class="clearfix">
+							<form action="/ty/recharge" method="post">
+								<span style="width: 168px;text-align: right;color: #666666">转账后输入交易号 &nbsp;</span>
+								<input type="text" name="tran_number" id="transaction_num" 
+									style="width: 420px;" required placeholder="请输入交易号">
+								<br>
+								<span style="width: 168px;text-align: right;color: #666666;">充值金额 &nbsp;</span>
+								<input type="text" id="transaction_sum" 
+									style="margin: 10px 26px 0 0;width: 180px;" name="cz_money" required placeholder="请输入充值金额">
+								<input type="submit" value="确认提交" class="submit_sure" id="submit_TJ">
+							</form>
+						</div>
+					</div>
+					
+					<p class="pay_bao_tip" style="height: 62px;width: 752px;margin-top: 34px; padding-left: 168px;line-height: 62px;background: #ffedf1;color:#ff0000;font-size: 18px;">支付宝自助打款审核，工作时间充值1-2小时内审核。若急需审核，可联系
+						<a href="javascript:void(0)" target="_blank" style="height: 22px;display:inline-block; margin-left: 13px; color: #333333;width: 60px;line-height: 22px; background: #f3f3f3;background: url(/img/user/QQ_sever.png) no-repeat 7px center; border: 1px solid #CCCCCC; font-size: 14px;padding-left: 27px;"
+						 id="KF_linkt">QQ客服</a>
+					</p>
+					<h3 class="userAlipay_case">转账示例：</h3>
+					<ul class="userAlipay_example clearfix" style="margin-bottom: 50px;">
+						<li class="myfl pay_bao_tip" style="margin-left: 190px">
+							<img src="/img/images/pay9.png" style="max-width: 260px;max-height: 380px;">
+						</li>
+						<li class="myfr pay_bao_tip" style="margin-right: 190px">
+							<img src="/img/images/pay10.png" style="max-width: 260px;max-height: 380px;">
+						</li>
+						<li class="myfl pay_card_tip" style="margin-top: 30px;margin-left: 190px">
+							<img src="/img/images/7.png" style="max-width: 260px;max-height: 380px;" alt="图片加载失败">
+						</li>
+						<li class="myfr pay_card_tip" style="margin-top: 30px;margin-right: 190px">
+							<img src="/img/images/8.png" style="max-width: 260px;max-height: 380px;" alt="图片加载失败">
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div> {include file="public/footer"/}

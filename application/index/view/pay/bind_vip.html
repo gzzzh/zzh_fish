@@ -1,0 +1,63 @@
+{include file="public/header"/} 
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/business_l.css" /> 
+</head>
+<body>
+{include file="public/base_message_title"/}
+<div class="userControl_bg" style="padding:20px 0 40px 0">
+    <div class="main userControl">
+        <!-- 主要内容 -->
+        <div class="clearfix">
+            <!--左侧下拉列表-->{include file="public/nav_menu"/}
+            <!---左侧内容结束----->
+            <!-- 右侧内容 -->
+            <div class="shopBind_right myfl">
+            	<p class="myfr" style="background: #fff; width: 920px;height: 85px;line-height: 86px;font-size: 20px;color: #333;border-bottom: 1px solid #eaeaea;">开通VIP</p>
+                <form action="/biz/checkvip" id="myform" method="post">
+                    <table width="100%" class="insert-tab">
+                        <tr>
+                            <td>开通VIP类型：</td>
+                            <td>
+                                <select name="vip_type" required>
+                                    <option value="1">白银VIP</option>
+                                    <option value="2">黄金VIP</option>
+                                    <option value="3">钻石VIP</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>注意事项：</td>
+                            <td>
+                                1.开通白银VIP，转账金额为888元。<br>
+                                2.开通黄金VIP，转账金额为1888元。<br>
+                                3.开通黄金VIP，转账金额为2888元。<br>
+                                4.注：若开通对应的VIP，但实际转账金额未达到,将驳回申请。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>付款前注意：</td>
+                            <td>
+                                1.扫码前，请核对收款账号为：17301938036
+                                2.收款账号姓名为：周志豪
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>扫码支付：</td>
+                            <td>
+                                <img style="width: 150px;height: 150px" src="/upload/alisqm/5c6e0b2419c68_sqm.jpg">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>转账后输入交易单号</td>
+                            <td><input type="text" name="tran_number" placeholder="请输入交易单号" required></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="确认提交"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div> {include file="public/footer"/}

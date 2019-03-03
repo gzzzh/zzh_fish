@@ -1,0 +1,67 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/business_l.css" />
+{include file="public/top_nav_menu"/}
+{include file="public/base_message_title"/}
+<div class="fundManage_bag row">
+	<!--内容层1200居中-->
+	<div class="main clearfix" style="margin: 20px auto;">
+		<!--左侧下拉列表-->
+		{include file="public/nav_menu"/}
+		<!---左侧内容结束----->
+		<!---右侧内容-------->
+		<div class="business_rightmain myfl" style="width:920px;padding:0 30px 50px; background: #FFF;">
+			<p class="myfr" style="background: #fff; width: 920px;height: 85px;line-height: 86px;font-size: 20px;color: #333;">活动管理</p>
+			<div class="box particulars">
+					<table class="list-table" >
+						<thead>
+							<tr>
+								<th>活动名称</th>
+								<th>客单价（元）</th>
+								<th>剩余时间</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							{foreach $list as $vo}
+								<tr>
+									<td>{$vo.product_name}</td>
+									<td>{$vo.product_price}</td>
+									<td>
+										{if condition="$vo.status eq 2"}
+											{$vo.remaining}
+										{else/}
+											/
+										{/if}
+									</td>
+									<td>
+										{if condition="$vo.status eq -1"}失效
+										{elseif condition="$vo.status eq 0"/}关闭
+										{elseif condition="$vo.status eq 1"/}等待抽取资格
+										{elseif condition="$vo.status eq 2"/}获得资格
+										{elseif condition="$vo.status eq 3"/}已下单
+										{elseif condition="$vo.status eq 4"/}审核驳回
+										{elseif condition="$vo.status eq 5"/}通过审核
+										{elseif condition="$vo.status eq 6"/}申诉中
+										{elseif condition="$vo.status eq 7"/}已完成
+										{elseif condition="$vo.status eq 8"/}等待审核
+										{/if}
+									</td>
+									<td>
+										{if condition="$vo.status eq 2"}
+											<a href="/addreport/{$vo.goods_id}">提交订单</a>
+										{elseif condition="$vo.status eq 3"/}
+											<a href="/submit/report/{$vo.goods_id}">上传试用报告</a>
+										{elseif condition="$vo.status eq 4"/}
+											<a href="/submit/report/{$vo.goods_id}">上传试用报告</a>
+										{/if}
+									</td>
+								</tr>
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
+		</div> 
+		</div>
+	</div>
+	{include file="public/footer"/}

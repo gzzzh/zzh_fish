@@ -1,0 +1,37 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/business_l.css" />
+{include file="public/top_nav_menu"/}
+{include file="public/base_message_title"/}
+<div class="fundManage_bag row">
+	<!--内容层1200居中-->
+	<div class="main clearfix" style="margin: 20px auto;">
+		<!--左侧下拉列表-->
+		{include file="public/nav_menu"/}
+		<!---左侧内容结束----->
+		<!---右侧内容-------->
+		<div class="business_rightmain myfl" style="width:920px;padding:30px; background: #FFF;">
+			<p class="myfr" style="background: #fff; width: 920px;height: 85px;line-height: 86px;font-size: 20px;color: #333;border-bottom: 1px solid #eaeaea;">上传试用报告</p>
+			<form action="/upload/zol" method="post" enctype="multipart/form-data">
+				<table class="insert-tab">
+					<tr>
+						<td>评测图片</td>
+						<td><input type="file" name="comment_img" required/></td>
+						</tr>
+						<tr>
+							<td>增值服务图片</td>
+							<td><input type="file" name="focus_img" id="collect_img" value="" required/>
+							<input type="hidden" name="tid" value="{$tInfo.id}"/></td>
+						</tr>
+						<tr>
+								<td></td>
+								<td>
+									<input type="submit" value="提交"/>
+								</td>
+							</tr>
+						</tr>
+				</table>
+				
+			</form>
+		</div> 
+	</div>
+</div>{include file="public/footer"/}

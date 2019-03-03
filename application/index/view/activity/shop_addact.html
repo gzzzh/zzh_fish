@@ -1,0 +1,272 @@
+{include file="public/header"/} 
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/business_l.css" />
+</head>
+<body>
+{include file="public/base_message_title"/}
+	<div class="userControl_bg" style="padding:20px 0 40px 0">
+		<div class="main userControl">
+			<!-- 主要内容 -->
+			<div class="clearfix">
+				<!--左侧下拉列表-->{include file="public/nav_menu"/}
+				<!---左侧内容结束----->
+				<!-- 右侧内容 -->
+				<div class="shopBind_right myfl" style="background:#FFF;">
+					<p class="publishing-activities">发布活动</p>
+					{empty name="$info"}
+						<form action="/biz/checkact" id="myform" method="post" enctype="multipart/form-data">
+						{else/}
+							<form action="/save/tasks" id="myform" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="id" value="{$info.id}" />
+								<input type="hidden" name="types" value="edit" />
+						{/empty}
+						<table width="100%" class="insert-tab">
+							<tr>
+								<td><i class="require-red">*</i>活动类型：</td>
+								<td>
+									<select name="task_type" required>
+										{empty name="$info"}
+											<option value="1">当天活动类型</option>
+											<option value="2">连续活动类型</option>
+										{else/}
+										<option value="1" {if condition='$info.task_type eq 1'}selected{/if}>当天活动类型</option>
+										<option value="2" {if condition='$info.task_type eq 2'}selected{/if}>连续活动类型</option>
+										{/empty}
+									</select>
+								</td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>选择店铺：</td>
+								<td>
+									<select name="merchant_id" required>
+										{empty name="$info"}
+											{foreach name='list' item='vo'}
+												<option value="{$vo.id}">{$vo.store_name}</option>
+											{/foreach}
+										{else/}
+											{foreach name='list' item='vo'}
+												<option value="{$vo.id}" {if condition='$info.merchant_id eq $vo.id'}selected{/if}>{$vo.store_name}</option>
+											{/foreach}
+										{/empty}
+									</select>
+								</td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>分类：</td>
+								<td>
+									<select name="category_id" required>
+										{empty name="$info"}
+											{foreach name='cateList' item='vo'}
+												<option value="{$vo.id}">{$vo.catname}</option>
+											{/foreach}
+										{else/}
+											{foreach name='cateList' item='vo'}
+												<option value="{$vo.id}" {if condition='$info.category_id eq $vo.id'}selected{/if}>{$vo.catname}</option>
+											{/foreach}
+										{/empty}
+									</select>
+								</td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>商品名称：</td>
+								<td><input type="text" name="product_name" value="{$info.product_name|default=''}" placeholder="请输入活动商品的名称" required/></td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>商品链接：</td>
+								<td><input type="text" name="product_link" value="{$info.product_link|default=''}"  placeholder="请输入活动商品的链接" required/></td>
+							</tr>
+
+							{notempty name="$info"}
+								<tr>
+									<td width="15%"><i class="require-red">*</i>商品主图：</td>
+									<td><img style="width:50px;" src="{$info.product_logo|default=''}"></td>
+								</tr>
+							{/notempty}
+
+
+							<tr>
+								<td><i class="require-red">*</i>商品主图：</td>
+								<td><input type="file" name="product_logo" required/></td>
+							</tr>
+
+							{notempty name="$info"}
+							<tr>
+								<td width="15%"><i class="require-red">*</i>礼品主图：</td>
+								<td><img style="width:50px;" src="{$info.product_logo_two|default=''}"></td>
+							</tr>
+							{/notempty}
+
+							<tr>
+								<td><i class="require-red"></i>礼品主图：</td>
+								<td><input type="file" name="product_logo_two" required/></td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>搜索关键词：</td>
+								<td><input type="text" name="task_label" value="{$info.task_label|default=''}" placeholder="例: 关键词1,关键词2" required/><span class="activities-tips">多个关键词用英文逗号','分隔</span></td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>排序方式：</td>
+								<td>
+									{empty name="$info"}
+										<select name="sortord" required>
+											<option value="1">综合排序</option>
+											<option value="2">信用排序</option>
+											<option value="3">销量排序</option>
+											<option value="4">价格降序</option>
+											<option value="5">价格升序</option>
+										</select>
+									{else/}
+										<select name="sortord" required>
+											<option value="1" {if condition='$info.sortord eq 1'}selected{/if}>综合排序</option>
+											<option value="2" {if condition='$info.sortord eq 2'}selected{/if}>信用排序</option>
+											<option value="3" {if condition='$info.sortord eq 3'}selected{/if}>销量排序</option>
+											<option value="4" {if condition='$info.sortord eq 4'}selected{/if}>价格降序</option>
+											<option value="5" {if condition='$info.sortord eq 5'}selected{/if}>价格升序</option>
+										</select>
+									{/empty}
+								</td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>商品单价：</td>
+								<td><input type="text" name="product_price" value="{$info.product_price|default=''}" placeholder="活动商品的单价" required/></td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>商品数量：</td>
+								<td><input type="text" name="num" value="{$info.num|default=''}" placeholder="请输入整数的数量" required/></td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red"></i>商品规格/备注：</td>
+								<td><input type="text" name="remark" value="{$info.remark|default=''}" placeholder="默认: 任意规格.不能输入空格"/></td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>是否包邮：</td>
+								<td>
+									<select>
+										<option>包邮</option>
+									</select>
+								</td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>开始时间：</td>
+								<td><input type="text" name="begin_time" id='begin_time' readonly placeholder="年/月/日" required/></td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>结束时间：</td>
+								<td><input type="text" name="end_time" id="eng_time" readonly placeholder="年/月/日" required/></td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>支持花呗：</td>
+								<td>
+									{empty name="$info"}
+										<label for="support_Bai"><input name="if_huabei" type="radio" value="1" checked="checked" id='support_Bai'/>不支持</label>
+										<label for="support_Bai1"><input name="if_huabei" type="radio" value="2" id='support_Bai1'/>支持</label>
+									{else/}
+										<label for="support_Bai"><input name="if_huabei" type="radio" value="1" {if condition='$info.if_huabei eq 1'}checked{/if} id='support_Bai'/>不支持</label>
+										<label for="support_Bai1"><input name="if_huabei" type="radio" value="2" {if condition='$info.if_huabei eq 2'}checked{/if id='support_Bai1'/>支持</label>
+									{/empty}
+								</td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>支持信用卡：</td>
+								<td>
+									{empty name="$info"}
+									<label for="support_1"><input name="if_visa" type="radio" value="1" checked="checked" id='support_1'/>不支持</label>
+									<label for="support_2"><input name="if_visa" type="radio" value="2" id='support_2'/>支持</label>
+									{else/}
+									<label for="support_1"><input name="if_visa" type="radio" value="1" {if condition='$info.if_huabei eq 1'}checked{/if} id='support_1'/>不支持</label>
+									<label for="support_2"><input name="if_visa" type="radio" value="2" {if condition='$info.if_huabei eq 2'}checked{/if id='support_2'/>支持</label>
+									{/empty}
+								</td>
+							</tr>
+
+							<tr>
+								<td><i class="require-red">*</i>开启增值服务：</td>
+								<td>
+									{empty name="$info"}
+									<label for="open_sever1">
+										<input name="is_serve" type="radio" value="1" checked="checked" id='open_sever1'/>不开启</label>
+									<label for="open_sever2"><input name="is_serve" type="radio" value="2" id='open_sever2'/>开启</label>
+									{else/}
+									<label for="open_sever1"><input name="is_serve" type="radio" 
+										value="1" {if condition='$info.if_huabei eq 1'}checked{/if} 
+										id='open_sever1'/>不开启</label>
+									<label for="open_sever2"><input name="is_serve" type="radio" 
+										value="2" {if condition='$info.if_huabei eq 2'}checked{/if 
+											id='open_sever2'/>开启</label>
+									{/empty}
+								</td>
+							</tr>
+								<tr class="valueAddService">
+									<td><i class="require-red"></i>增值服务：</td>
+									<td>
+										<span>旺旺聊天</span><input type="text" name="user_chat"  value="{$info.user_chat|default=''}" placeholder="请输入次数"/>
+									</td>
+								</tr>
+								<tr class="valueAddService">
+									<td><i class="require-red"></i>增值服务：</td>
+									<td>
+										<span>手淘问大家</span><input type="text" name="user_ask" value="{$info.user_ask|default=''}" placeholder="请输入次数"/>
+									</td>
+								</tr>
+								<tr class="valueAddService">
+									<td><i class="require-red"></i>增值服务：</td>
+									<td>
+										<span>晒图/视频</span><input type="text" name="user_photo" value="{$info.user_photo|default=''}" placeholder="请输入次数"/>
+									</td>
+								</tr>
+								<tr class="valueAddService">
+									<td><i class="require-red"></i>增值服务：</td>
+									<td>
+										<span>追加图片</span><input type="text" name="add_photo" value="{$info.add_photo|default=''}" placeholder="请输入次数"/>
+									</td>
+								</tr>
+								<tr class="valueAddService">
+									<td><i class="require-red"></i>增值服务：</td>
+									<td>
+										<span>追加评论</span><input type="text" name="add_cooent" value="{$info.add_cooent|default=''}" placeholder="请输入次数"/>
+									</td>
+								</tr>
+							</div>
+							<tr>
+								<td></td>
+								{empty name="$info"}
+								<td><input type="submit"  value="添加活动" /></td>
+								{else/}
+								<td><input type="submit"  value="保存修改" /></td>
+								{/empty}
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="{$Think.INDEX_STYLE}layer/laydate.js"></script>
+	<script>
+		laydate.render({
+		  elem: '#begin_time' //指定元素
+		});
+		laydate.render({
+		  elem: '#eng_time' //指定元素
+		});
+		$('#open_sever1').on('click', function () {
+			$('.valueAddService').css('display', 'none')
+		});
+		$('#open_sever2').on('click', function () {
+			$('.valueAddService').css('display', 'block')
+		})
+	</script>
+	{include file="public/footer"/}

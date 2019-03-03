@@ -1,0 +1,44 @@
+{include file="public/header"/} </head>
+<body>
+		{include file="public/top_nav_menu"/}
+	{include file="public/base_message_title"/}
+	<div class="userControl_bg" style="padding:20px 0 40px 0">
+		<div class="main userControl">
+			<!-- 主要内容 -->
+			<div class="clearfix">
+				<!--左侧下拉列表-->{include file="public/nav_menu"/}
+				<!---左侧内容结束----->
+				<!-- 右侧内容 -->
+
+					<div class="shopBind_right myfl">
+						<div class="shopBind_right_prompt clearfix">
+							<p class="myfr" style="background: #fff; width: 920px;height: 85px;line-height: 86px;font-size: 20px;color: #333;border-bottom: 1px solid #eaeaea;">支付宝账户列表</p>
+							<div>
+								<ul class="shopManage_title clearfix">
+									<li class="shopManage_title_a myfl">支付宝姓名</li>
+									<li class="shopManage_title_a myfl">支付宝账号</li>
+									<li class="shopManage_title_a myfl" >状态</li>
+									<li class="shopManage_title_a myfl" style="width: 260px;">提交时间</li>
+								</ul>
+								<ul class="shopManage_bottom clearfix">
+									<li class="shopManage_title_a myfl">{$info.name}</li>
+									<li class="shopManage_title_a myfl">{$info.account}</li>
+									<li class="shopManage_title_a myfl">{if condition="$info.status eq 1"}
+											等待审核
+    								{elseif condition="$info.status eq 2"}
+    									通过认证
+    								{else}
+    									驳回认证<a href="/uc/bindtb" style="color: #C62F2F">重新认证</a>
+    							{/if}
+									</li>
+									<li class="shopManage_title_a myfl" style="width: 260px;">
+										{$info.add_time}</li>
+									<!---->
+								</ul>
+							</div>
+						</div>
+
+				</div>
+			</div>
+		</div>
+	</div> {include file="public/footer"/}

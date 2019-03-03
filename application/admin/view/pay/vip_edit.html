@@ -1,0 +1,68 @@
+{include file="public/left" /}
+<!--/sidebar-->
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:url('admin/Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">VIP信息管理</span></div>
+    </div>
+    <div class="result-wrap">
+        <form action="{:url('admin/pay/vipSave')}" method="post" id="myform" name="myform">
+            <div class="config-items">
+                <div class="config-title">
+                    <h1><i class="icon-font">&#xe00a;</i>编辑VIP</h1>
+                </div>
+                <div class="result-content">
+                    <table width="100%" class="insert-tab">
+                        <tbody>
+
+                        <input type="hidden" name="id" value="{$info.id|default=''}"/>
+                        <input type="hidden" name="userid" value="{$info.userid|default=''}"/>
+                        <tr>
+                            <th><i class="require-red">*</i>用户ID：</th>
+                            <td>{$info.userid}</td>
+                        </tr>
+                        <tr>
+                            <th width="15%"><i class="require-red">*</i>金额：</th>
+                            <td>{$info.money}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>VIP类型：</th>
+                            <td>
+                                {if condition="$info.vip_type eq 1"}
+                                    普通会员
+                                {elseif condition="$info.vip_type eq 2"}
+                                    中级会员
+                                {elseif condition="$info.vip_type eq 3"}
+                                    高级会员
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>订单号：</th>
+                            <td>{$info.tran_number}</td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>备注原因：</th>
+                            <td><input type="text"  value="{$info.cause|default=''}" size="40" name="cause" class="common-text"></td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input type="submit" value="提交" class="btn btn-primary btn6 mr10">
+                                <a href="{:url('admin/pay/vipIndex')}"><input type="button" value="返回"  class="btn btn6"></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!--/main-->
+</div>
+</body>
+</html>
+<script>
+</script>

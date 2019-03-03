@@ -1,0 +1,76 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/business_l.css" /> </head>
+<body> {include file="public/base_message_title"/}
+	<div class="userControl_bg" style="padding:20px 0 40px 0">
+		<div class="main userControl">
+			<!-- 主要内容 -->
+			<div class="clearfix">
+				<!--左侧下拉列表-->{include file="public/nav_menu"/}
+				<!---左侧内容结束----->
+				<!-- 右侧内容 -->
+				<div class="shopBind_right myfl" style="background:#FFF;">
+					<p class="publishing-activities">支付费用</p>
+					<form action="/uc/tjtrade" id="myform" method="post" enctype="multipart/form-data">
+						<table width="100%" class="insert-tab">
+							<tr>
+								<td><i class="require-red">*</i>商品名称：</td>
+								<td>{$info.product_name}<input type="hidden" name="id" value="{$info.id}" /></td>
+							</tr>
+							<tr>
+								<td><i class="require-red">*</i>商品主图：</td>
+								<td>
+									<img style="width:50px;" src="{$info.product_logo}" /> </td>
+							</tr>
+							<tr>
+								<td><i class="require-red">*</i>商品单价：</td>
+								<td>{$info.product_price}</td>
+							</tr>
+							<tr>
+								<td><i class="require-red">*</i>商品数量：</td>
+								<td>{$info.num}</td>
+							</tr>
+							<tr>
+								<td><i class="require-red">*</i>开始时间：</td>
+								<td>{$info.begin_time}</td>
+							</tr>
+							<tr>
+								<td><i class="require-red">*</i>结束时间：</td>
+								<td>{$info.end_time}</td>
+							</tr>
+							<tr>
+								<td><i class="require-red">*</i>状态：</td>
+								<td> 
+									{if condition="$info.status eq 1"}待付款 
+									{elseif condition="$info.status eq 2"/}(已付)待审核 
+									{elseif condition="$info.status eq 3"/}进行中 
+									{elseif condition="$info.status eq 4"/}已完成
+									{elseif condition="$info.status eq 5"/}未通过审核 
+									{elseif condition="$info.status eq 6"/}超期失效 
+									{/if} </td>
+							</tr>
+							<tr>
+								<td><i class="require-red">*</i>费用总览：</td>
+								<td> 总费用:{$info.countsPrice}
+									<br> 担保金:{$info.deposit}
+									<br> 活动费用:{$info.service}
+									<br> 增值服务费:{$info.adv_price}
+									<br> </td>
+							</tr>
+							<tr>
+								<td><i class="require-red">*</i>支付订单号：</td>
+								<td>
+									<input type="text" name="trade_no" required/>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<input type="submit" value="提交" />
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div> {include file="public/footer"/}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>财务明细</title>
+</head>
+<body>
+    {foreach name='list' item='vo'}
+    <p>财务类型：{$vo.name}</p>
+    <p>变动金额：{if condition="$vo.types eq 1"}+{else/}-{/if}{$vo.money}</p>
+    <p>财务明细：{$vo.details}</p>
+    <p>财务日期：{$vo.add_time}</p>
+    {/foreach}
+        <p>总数据：{$cNumber}</p>
+        <p>总页数：{$cPage}</p>
+</body>
+</html>

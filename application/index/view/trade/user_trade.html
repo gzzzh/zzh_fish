@@ -1,0 +1,61 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/user_trade.css" />
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/business_l.css" />
+	{include file="public/top_nav_menu"/}
+{include file="public/base_message_title"/}
+<div class="fundManage_bag row">
+	<div class="main clearfix" style="margin: 20px auto;">
+		<!--左侧下拉列表-->{include file="public/nav_menu"/}
+		<!---左侧内容结束----->
+		<!---右侧内容-------->
+		<div class="fundManage_right myfr" style="min-height:802px;">
+			<!--获取后台的数据(依次是1.当前位置2.一页多少条3.一共多少页)-->
+			<p class="myfr" style="background: #fff; width: 920px;height: 85px;line-height: 86px;font-size: 20px;color: #333;border-bottom: 1px solid #eaeaea;">财务日志</p>
+			<ul class="clearfix userFund_money" style="display: none;">
+				<li>账户总额
+					<span> ￥0.00 </span>
+				</li>
+				<li class="funManage_wire"></li>
+				<li>可用余额
+					<span> ￥0.00 </span>
+				</li>
+				<li class="funManage_wire"></li>
+				<li>冻结资金
+					<span> ￥0.00 </span>
+				</li>
+				<li class="funManage_wire"></li>
+				<li>累计支出
+					<span> ￥0.00 </span>
+				</li>
+				<li class="funManage_wire"></li>
+				<li>提现中
+					<span style="font-weight: bold;"> ￥0.00 </span>
+				</li>
+			</ul>
+			<table class='list-table'>
+				<thead>
+					<tr>
+						<th>UID</th>
+						<th>变动金额</th>
+						<th>财务类型</th>
+						<th>财务详情</th>
+						<th>时间</th>
+					</tr>
+				</thead>
+				<tbody>
+					{foreach $list as $vo}
+						<tr>
+							<td>
+								{$vo.uid}
+							</td>
+							<td>{if condition ="$vo.types  eq 1"} + {else/} - {/if}{$vo.money }</td>
+							<td>{$vo.name}</td>
+							<td>{$vo.details}</td>
+							<td>{$vo.add_time}</td>
+						</tr>
+					{/foreach}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div> {include file="public/footer"/}

@@ -1,0 +1,111 @@
+{include file="public/header"/} </head>
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/user_index.css" />
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/main.css" />
+<body> 
+	{include file="public/top_nav_menu"/}
+	{include file="public/base_message_title"/}
+	<div class="userControl_bg" style="padding:20px 0 40px 0">
+		<div class="main userControl">
+			<!-- 主要内容 -->
+			<div class="clearfix">
+				<!--左侧下拉列表-->{include file="public/nav_menu"/}
+				<!---左侧内容结束----->
+				<!-- 右侧内容 -->
+				<div class="userControl_rightmain myfl">
+					<!-- 信息、数据展示 -->
+					<div class="userControl_index_base myfl">
+						<div class="userControl_userinfo" style="position: relative">
+							<div class="userControl_userinfoleft">
+								<!--<img src="/img/business/business_index_user.png" height="94" width="94" style="border-radius: 46px;float: right;">-->
+								<p class="userControl_userinfolefttop">
+									<span>
+									电话号码： {$info['mobile']} 
+									</span>
+									{if condition="$info['is_vip'] eq 1"}
+										<span style="height: 16px;line-height: 16px;text-align: center;color: #fff; margin-top: 2px;width: 60px;border-radius: 8px;background: #ede467;display: inline-block;position: relative;margin-left: 20px;">
+										<img src="{$Think.INDEX_STYLE}img/home/userRecharge_a.png" style="position: absolute;left: -12px;top: -2px;">
+										<em style="font-style: italic">VIP</em>
+									</span>
+									{else /}
+										<span style="height: 18px;line-height: 18px;border: 1px solid #C62F2F;border-radius: 18px;font-size: 12px;color: #C62F2F; width:177px; display: inline-block;margin-left: 5px; ">
+										<em style="font-weight:800;margin-left: 8px;">您还不是会员哦~</em>
+										<a href="/go-user-vip-open" style="display: inline-block;height: 18px;line-height: 18px;background: #C62F2F;color: #FFF;width: 43px;border-radius: 9px;text-align: center;float:right">去开通</a>
+									</span>
+									{/if}
+								</p>
+								<p class="userControl_userinfoleftbuttom">
+									&ensp;&ensp;&ensp;QQ号：{$info['qq']}
+								</p>								
+							</div>
+						</div>
+						<div class="userControl_index_money userControl_useraccount ">
+							<input type="hidden" value="0" class="old_RMB1">
+							<input type="hidden" value="0" class="old_RMB2">
+							<div class="useraccountlist">
+								<p style="margin-left: 32px;line-height: 36px;">
+									<span style="color: #666;">可用余额</span>
+									<a href="/wealth/user/amount" style="color: #C62F2F;float: right;margin-right: 10px;">资金明细&gt;</a>
+								</p>
+								<p style="color: #666;">
+									<span style="font-size: 22px;color: #e51118;font-weight: 800;line-height: 36px;margin-left: 32px;" class="RMB1">{$info['money']}</span>元</p>
+							</div>
+							<div class="useraccountlist">
+								<p style="margin-left: 32px;line-height: 36px;">
+									<span style="color: #666;">冻结余额</span>
+								</p>
+								<p style="color: #666;">
+									<span style="font-size: 22px;color: #666;font-weight: 800;line-height: 36px;margin-left: 32px;" class="RMB2">{$info['frozen_money']}</span>元</p>
+							</div>
+						<div class="userControl_index_FAQ clearfix" style="display: none;">
+							<div class="myfl" style="width: 438px;">
+								<h1 class="userControl_index_title2">用户须知</h1>
+								<p>
+									<a class="user_notice" target="_blank" href="/help/user_getaward">如何领取新用户必中奖励</a>
+									<span>03-31</span>
+								</p>
+								<p>
+									<a class="user_notice" target="_blank" href="/help/user_goldorder">金币兑换中奖如何领取下单</a>
+									<span>03-31</span>
+								</p>
+								<p>
+									<a class="user_notice" target="_blank" href="/help/user_howspokesperson">如何成为代言人</a>
+									<span>03-31</span>
+								</p>
+								<p>
+									<a class="user_notice" target="_blank" href="/help/user_spokespersonaward">如何领取代言人奖励</a>
+									<span>03-31</span>
+								</p>
+								<p>
+									<a class="user_notice" target="_blank" href="/help/user_punish">用户处罚规则</a>
+									<span>03-31</span>
+								</p>
+							</div>
+							<div class="myfr" style="width: 438px;">
+								<h1 class="userControl_index_title2">常见问题</h1>
+								<p>
+									<a class="user_issue" target="_blank" href="/help/user_forgetpassword">忘记密码怎么办？</a>
+									<span>03-31</span>
+								</p>
+								<p>
+									<a class="user_issue" target="_blank" href="/help/user_progress">如何查看活动进展？</a>
+									<span>03-31</span>
+								</p>
+								<p>
+									<a class="user_issue" target="_blank" href="/help/user_getfans">如何邀请好友成为你的粉丝？</a>
+									<span>03-31</span>
+								</p>
+								<p>
+									<a class="user_issue" target="_blank" href="/help/user_commonquestion?cannot_find">找不到商品怎么办？</a>
+									<span>03-31</span>
+								</p>
+								<p>
+									<a class="user_issue" target="_blank" href="/help/user_sendevaluate">收货后如何提交评价？</a>
+									<span>03-31</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> {include file="public/footer"/}

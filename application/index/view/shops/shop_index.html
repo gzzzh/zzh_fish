@@ -1,0 +1,196 @@
+{include file="public/header"/} </head>
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/business_l.css" />
+<body>
+	{include file="public/top_nav_menu"/}
+	{include file="public/base_message_title"/}
+	<div class="userControl_bg clearfix" style="padding:20px 0 40px 0">
+		<div class="main userControl">
+			<!--左侧下拉列表-->{include file="public/nav_menu"/}
+			<!---左侧内容结束----->
+			<!-- 右侧内容 -->
+			<div class="userControl_rightmain myfl">
+				<div class="business_rightmain myfl">
+					<!-- 信息、数据展示 -->
+					<div class="business_index_base myfl">
+						<div class="new_seller_info clearfix">
+							<!--头像-->
+							<div class="myfl head_portrait">
+								<span>
+									<a href="/user/person/info">
+										<img class="userControl_index_userPic" src="/img/business/business_index_user.png">
+									</a>
+								</span>
+							</div>
+							<div class="myfl seller_detailed_info">
+								<div class="top_info">
+									<p class="seller_name" title="18594236885">{$mobile}</p>
+									<p>
+										{if condition='$info.is_vip eq 0'}
+											<a href="/biz/forvip" style="margin-left: 4px;" class="routine_link_btns">
+											<i>开通</i> 您还不是会员哦~ </a>
+										{elseif condition='$info.is_vip eq 1'/}
+											<span class="routine_vip" style="background: url(https://laquimage.b0.upaiyun.com/bdsa1527930543922.png) no-repeat center;color: #fff;">普
+												<em>VIP</em>
+											</span>
+										{elseif condition='$info.is_vip eq 2'/}
+										<span class="routine_vip" style="background: url(https://laquimage.b0.upaiyun.com/bdsa1527930543922.png) no-repeat center;color: #fff;">高级
+											<em>VIP</em>
+										</span>
+										{elseif condition='$info.is_vip eq 3'/}
+										<span class="routine_vip" style="background: url(https://laquimage.b0.upaiyun.com/bdsa1527930543922.png) no-repeat center;color: #fff;">超级
+											<em>VIP</em>
+										</span>
+										{elseif condition='$info.is_vip eq 4'}
+										<span class="routine_vip" style="background: url(https://laquimage.b0.upaiyun.com/bdsa1527930543922.png) no-repeat center;color: #fff;">审核中
+										</span>
+										{/if}
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="sellerinfo_capital_statistics">
+							<ul class="clearfix">
+								<li class="frozen_money">
+									<span>冻结金额</span>
+									<p>{$info.frozen_money}
+										<span>元</span>
+									</p>
+								</li>
+								<li class="available_money">
+									<span>可用余额</span>
+									<p>{$info.money}
+										<span>元</span>
+									</p>
+								</li>
+								<li class="moneypage_link" style="border-right: 1px dashed #e8e8e8;">
+									<a href="/ty/czlist" class="recharge_link">充值</a>
+								</li>
+								<li class="moneypage_link">
+									<a href="/wealth/merchant/spokesman" target="_blank" class="spokes_link">邀请赚钱（{$info.my_agent}）</a>
+								</li>
+							</ul>
+						</div>
+					
+						<h1 class="business_index_title1">当前活动情况</h1>
+						<div class="clearfix">
+							<div class="business_index_activity">
+								<a href="/shop/activity?activityStatus=0&amp;shopType=0" target="_blank">
+									<h2 style="line-height: 58px;padding-top: 0;">等待付款 （
+										<em>0</em>）</h2>
+								</a>
+							</div>
+							<div class="business_index_actArrowRight"></div>
+							<div class="business_index_activity">
+								<a href="/shop/activity?activityStatus=1&amp;shopType=0" target="_blank">
+									<h2 style="line-height: 58px;padding-top: 0;">待审核  （
+										<em>0</em>）</h2>
+								</a>
+							</div>
+							<div class="business_index_actArrowRight"></div>
+							<div class="business_index_activity">
+								<a href="/shop/activity?activityStatus=2&amp;shopType=0" target="_blank">
+									<h2 style="line-height: 58px;padding-top: 0;">进行中（
+										<em>0</em>）</h2>
+								</a>
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="business_index_actArrowDown"></div>
+						</div>
+						<div class="clearfix">
+							<div class="business_index_activity">
+								<a href="/shop/activity?activityStatus=0&amp;shopType=0" target="_blank">
+									<h2 style="line-height: 58px;padding-top: 0;">等待结算   （
+										<em>0</em>）</h2>
+								</a>
+							</div>
+							<div class="business_index_actArrowLeft"></div>
+							<div class="business_index_activity">
+								<a href="/shop/activity?activityStatus=3&amp;shopType=0" target="_blank">
+									<h2 style="line-height: 58px;padding-top: 0;">已完成（
+										<em>0</em>）</h2>
+								</a>
+							</div>
+							<div class="business_index_actArrowLeft"></div>
+							<div class="business_index_activity">
+								<a href="/shop/activity?activityStatus=6&amp;shopType=0" target="_blank">
+									<h2 style="line-height: 58px;padding-top: 0;">驳回活动（
+										<em>0</em>）</h2>
+								</a>
+							</div>
+						</div>
+						<h1 class="business_index_title1">帮助</h1>
+						<div class="business_index_link">
+							<a href="/shop/list" target="_blank">
+								<img src="/img/business/business_icon_shop.png">绑定店铺</a>
+							<a href="/help/business_issue" target="_blank">
+								<img src="/img/business/business_icon_newComer.png">新手入门</a>
+						</div>
+						<div class="business_index_FAQ clearfix">
+							<div class="myfl">
+								<h1 class="business_index_title2">商家须知</h1>
+								<p>
+									<a target="_blank" class="business_notice" style="background: none;margin-bottom: 0;" href="/help/business_howissue">可以发布哪些活动，区别是什么？</a>
+									<span>03-31</span>
+								</p>
+								<p>
+									<a target="_blank" class="business_notice" style="background: none;margin-bottom: 0;" href="/help/business_evaluate">如何发布追加评价任务</a>
+									<span>03-31</span>
+								</p>
+								<p>
+									<a target="_blank" class="business_notice" style="background: none;margin-bottom: 0;" href="/help/user_punish">用户处罚规则</a>
+									<span>03-31</span>
+								</p>
+							</div>
+							<div class="myfr">
+								<h1 class="business_index_title2">常见问题</h1>
+								<p>
+									<a target="_blank" class="business_issue" href="/help/business_commonquestionD">如何开通VIP会员？</a>
+									<span>03-31</span>
+								</p>
+								<p>
+									<a target="_blank" class="business_issue" href="/help/business_relevance">如何查看我的活动详情？</a>
+									<span>03-31</span>
+								</p>
+								<p>
+									<a target="_blank" class="business_issue" href="/help/business_details">什么是增值服务？增值服务有哪些？</a>
+									<span>03-31</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<!-- 广告位展示 -->
+					<div class="business_index_ad myfr" style="display: none;">
+						<h1 class="business_index_title3">官方报名入口</h1>
+						<div style="position: relative">
+							<input type="hidden" value="https://www.laqu.com/merchant-index" class="targetUrllink">
+							<img src="https://laquimage.b0.upaiyun.com/system/2018/12/28/file1545980929481_273.jpg" width="220px" height="140px"
+							 style="cursor: pointer" onclick="popwarn(this)">
+							<span style="font-size: 12px;color: #fff;height: 16px;width: 28px;background: #848488;line-height: 16px;text-align: center;display: inline-block;position: absolute;top: 0;;right: 0;">广告</span>
+						</div>
+						<div style="position: relative">
+							<input type="hidden" value="http://cy1788.com/?iaqEFb" class="targetUrllink">
+							<img src="https://laquimage.b0.upaiyun.com/laqu/images/img1528942060165_504.jpeg" width="220px" height="140px" style="cursor: pointer"
+							 onclick="popwarn(this)">
+							<span style="font-size: 12px;color: #fff;height: 16px;width: 28px;background: #848488;line-height: 16px;text-align: center;display: inline-block;position: absolute;top: 0;;right: 0;">广告</span>
+						</div>
+						<div style="position: relative">
+							<input type="hidden" value="http://www.liuliangbook.com/" class="targetUrllink">
+							<img src="https://laquimage.b0.upaiyun.com/laqu/images/img1514268198622_230.jpg" width="220px" height="140px" style="cursor: pointer"
+							 onclick="popwarn(this)">
+							<span style="font-size: 12px;color: #fff;height: 16px;width: 28px;background: #848488;line-height: 16px;text-align: center;display: inline-block;position: absolute;top: 0;;right: 0;">广告</span>
+						</div>
+						<div style="position: relative">
+							<input type="hidden" value="http://wpa.qq.com/msgrd?v=3&amp;uin=3003760271&amp;site=qq&amp;menu=yes" class="targetUrllink">
+							<img src="https://laquimage.b0.upaiyun.com/laqu/images/img1528942069036_105.jpeg" width="220px" height="140px" style="cursor: pointer"
+							 onclick="popwarn(this)">
+							<span style="font-size: 12px;color: #fff;height: 16px;width: 28px;background: #848488;line-height: 16px;text-align: center;display: inline-block;position: absolute;top: 0;;right: 0;">广告</span>
+						</div>
+						<h1 class="business_index_title3">合作伙伴推荐
+							<a href="" style="display: none;">更多&gt;</a>
+						</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> {include file="public/footer"/}

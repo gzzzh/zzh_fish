@@ -1,0 +1,140 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/user.css" />
+<body>
+	{include file="public/top_nav_menu"/}
+	{include file="public/base_message_title"/}
+<div class="fundManage_bag row">
+	<!--内容层1200居中-->
+	<div class="main clearfix" style="margin: 20px auto;">
+		<!--左侧下拉列表-->
+		{include file="public/nav_menu"/}
+		<!---左侧内容结束----->
+
+		<!--右侧内容部分-->
+		<div class="fundNews_right myfr">
+			<span class="fundNews_right_title">淘宝账户绑定</span>
+			<input type="hidden" value="" id="taobaoBind_btn">
+			<table class="taobaoBinding_table pd36" border="0" cellspacing="0" cellpadding="0" style="display: none;">
+				<tbody>
+					<tr>
+						<th>已绑定淘宝ID</th>
+						<th>绑定时间</th>
+						<th>状态</th>
+						<th>操作</th>
+					</tr>
+				</tbody>
+			</table>
+			<input type="hidden" value="0" class="scanSwitchvalue">
+			<a id="bt" class="taobaoBinding_table_btn" style="display: none;">绑定淘宝账户</a>
+			<!-- 传统淘宝绑定 -->
+			<form action="/uc/committb" class="taobaoBinding_form"  method="post"
+				id="form_sub" style="display: block;" enctype="multipart/form-data">
+				<div style="margin-bottom: 20px;">
+					<div class="item clearfix">
+						<span class="item_lable fl">淘宝会员名：</span>
+						<input class="item_input" 
+							id="taobaoBind_TBname" 
+							maxlength="24" 
+							name="account" 
+							tabindex="1" 
+							placeholder="请输入淘宝会员名称"
+							autocomplete="on"
+							required
+						  type="text"/>
+					</div>
+					<div class="item clearfix">
+						<span class="item_lable fl">淘宝会员名截图：</span>
+						<input
+							class="file_input"
+							name="account_imgs" 
+							id="tabBao_img"
+							tabindex="2" 
+							required
+						  type="file">
+						<img src="{$Think.INDEX_STYLE}img/pay_pic_again.png" alt=""
+							 class="select_pire" id="taoBao_show_imgs"/>
+					</div>
+					<div class="item clearfix">
+						<span class="item_lable fl">淘气值：</span>
+						<input class="item_input" type="text" name="price_value" id="" value="" required />
+					</div>
+					<div class="item clearfix">
+						<span class="item_lable fl">淘气值截图：</span>
+						<input type="file" name="price_imgs" id="taoQiZhi_img" value="" class="file_input" required/>
+						<img src="{$Think.INDEX_STYLE}img/pay_pic_again.png" alt="" 
+							id="taoQiZhi_show_imgs"class="select_pire"/>
+					</div>
+					<div class="item clearfix">
+						<span class="item_lable fl">性别：</span>
+						<label for="sex" class="sexLabel"><input type="radio" name="sex" value="1" required/>男</label>
+						<label for="sex" class="sexLabel"><input type="radio" name="sex" value="2" required/>女</label>
+					</div>
+					<div class="item clearfix">
+						<span class="item_lable fl">出生年月：</span>
+						<input class="item_input" type="text" name="birth_year" id="" value="" required />
+					</div>
+					<button class="taobaoBinding_form_btn" type="submit">确定</button>
+					<h3>注意事项：</h3>
+					<p style="color: #ff0000;font-weight: bold;">
+						1、请填写您的淘宝会员名，而不是您的淘宝会员名绑定的手机或者邮箱。
+					</p>
+					<p>2、淘宝账号需完成实名认证。</p>
+					<p>3、请核对淘宝账号后认真填写，如填写的账号不是本人所使用，则会影响活动中奖概率！</p>
+					<p>4、提交审核后平台预计在24小时（工作时间2小时内，非工作时间24小时内）内完成审核操作，只有审核通过的账号才能申请试用。</p>
+					<p>5、淘宝账号等级不低于2颗星且中差评率不大于1%，否则审核可能不通过。</p>
+					<p>6、淘宝账号认证通过后无法修改或删除。</p>
+				</div>
+			</form>
+			<!-- 二维码淘宝绑定 -->
+			<div class="taobaoBinding_qrcode" style="display: none;">
+				<p class="taobaoBinding_qrcodetext">请打开手机淘宝，扫一扫下方二维码自动识别淘宝账号</p>
+				<div class="myfl taobaoBinding_qrcodeimg">
+					<iframe name="iframe_a" id="qrcodesrc" src="https://laqu.com?uid=720313&amp;timemillis=1545829689201&amp;reffer=https://laqu.com/user/qr/taobo-info&amp;sign=1b969a131d6611fd35cde21d42e5bbf8"
+					 frameborder="0" height="240" width="240" style="margin-top: 50px;" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+					<p>二维码已失效?
+						<em style="color: #ff366f;text-decoration: underline;margin-left: 20px; cursor: pointer" class="updataqr" onclick="updataqr()">刷新</em>
+						<br> 请在手机上确认登录 </p>
+				</div>
+				<div class="myfl taobaoBinding_courseimg">
+					<img src="/img/user/courseimg.png" alt=""> </div>
+				<h3>注意事项：</h3>
+				<p class="taobaoBinding_qrcodenotice">
+					<span style="color: #72ace3;text-decoration: underline;">1、扫码后
+						<a href="/help/usertaobaobindqrcode" target="_blank" style="color: #72ace3">“手机淘宝未提示我登录”</a>、
+						<a href="/help/usertaobaobindqrcode1" target="_blank" style="color: #72ace3">“绑定账号不符合要求”</a>问题解决办法 </span>
+					<br> 2、请绑定非刷单非刷流量账号，且淘宝账号需完成实名认证。
+					<br> 3、如填写的账号不是本人所使用，则会影响活动中奖概率！
+					<br> 4、提交审核后平台预计在24小时（工作时间2小时内，非工作时间24小时内）内完成审核操作，只有审核通过的账号才能申请试用。
+					<br> 5、淘宝账号等级不低于2颗星且好评率不低于98%，注册时间大于3个月，否则审核不通过。
+					<br> 6、淘宝账号认证通过后无法修改或删除。 </p>
+			</div>
+		</div>
+	</div>
+	<script>
+	$("#tabBao_img").on("change",function (){
+		var objUrl = getObjectURL(this.files[0]);
+		if(objUrl){
+			$("#taoBao_show_imgs").attr("src",objUrl);
+		}
+	});
+	
+	$("#taoQiZhi_img").on("change",function (){
+		var objUrl = getObjectURL(this.files[0]);
+		if(objUrl){
+			$("#taoQiZhi_show_imgs").attr("src",objUrl);
+		}
+	});
+	
+	function getObjectURL(file) {
+		var url = null ;
+		if (window.createObjectURL!=undefined) { // basic
+		  url = window.createObjectURL(file) ;
+		} else if (window.URL!=undefined) { // mozilla(firefox)
+		  url = window.URL.createObjectURL(file) ;
+		} else if (window.webkitURL!=undefined) { // webkit or chrome
+		  url = window.webkitURL.createObjectURL(file) ;
+		}
+		return url ;
+	};
+	</script>
+</div> {include file="public/footer"/}

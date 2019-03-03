@@ -1,0 +1,90 @@
+{include file="public/header"/}
+	<body>
+		<div class="register_header">
+			<div class="header_center clearfix">
+				<div class="myfl">
+					<a href="/index">
+						<img src="/img/home/laqu_logo.png" />
+					</a>
+					<span>注册</span>
+				</div>
+				<div class="myfr">
+					<a href="/index">返回首页</a>
+					<span></span>
+					<a href="/login">已有账户，直接
+						<em>登录</em>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="register_content clearfix" style="background:url(/img/login_register/user_register_bag.png) no-repeat 0 138px;padding-bottom: 200px;">
+			<input type="hidden" value="" id="iserror">
+			<form action="/register/user/second/valid?" id="my_from" method="post">
+				<input type="hidden" name="memberType" value="1" />
+				<div class="register_box myfr">
+					<!--<div class="title clearfix">-->
+					<!--<span class="myfl"></span>-->
+					<!--<h1 class="myfl">拉趣新用户注册</h1>-->
+					<!--<input type="hidden" value="1" name="memberType" id="registeruser_type">-->
+					<!--<span class="myfr"></span>-->
+					<!--</div>-->
+					<!--<input type="text" placeholder="请输入您的用户名，支持手机号" name="nick" class="username" value="" maxlength="20"/>-->
+					<!--<p class="username_error"></p>-->
+					<!--<input type="password" style="color: #666;" placeholder="请输入您的密码" name="password" class="password" maxlength="18" value=""/>-->
+					<!--<p class="password_error"></p>-->
+					<!--<input type="password" style="color: #666;" placeholder="请重复您的密码" name="password1" class="password_again" maxlength="18" />-->
+					<!--<p class="password_again_error"></p>-->
+					<p style="margin-top: 180px;font-size: 24px;color: #333;margin-bottom: 14px;">拉趣新用户注册</p>
+					<p class="system_error" style="color: #ff366f"></p>
+					<p style="border-bottom: 1px solid #eaeaea;width: 338px;padding-top: 20px;">
+						<span style="color: #666666;font-size: 14px;vertical-align: top;border-right: 1px solid #ccc; width: 42px;margin-top: 14px;">+86</span>
+						<input type="text" style="border: none;width: 250px;padding-left: 9px;margin-left: 0" name="phone" maxlength="11"
+						 class="phone_num" placeholder="请输入手机号" value="" /> </p>
+					<p class="img_code" style="border-bottom: 1px solid #eaeaea;width: 338px;padding-top: 20px;">
+						<input type="text" name="captchaCode" placeholder="输入图像验证码" style="padding-left:0;width: 232px;border-bottom: none;margin-left: 0"
+						 id="imgcode" maxlength="6" value="" />
+						<img class="imgcodesrc" style="display: inline-block;height: 44px;cursor: pointer;" src=""> </p>
+					<!--<div class="photo_code clearfix">-->
+					<!--<input type="text" class="myfl" name="captchaCode" placeholder="请输入图片验证码" maxlength="4"/>-->
+					<!--<img src="" class="myfr"/>-->
+					<!--</div>-->
+					<!--<p class="photo_code_error"></p>-->
+					<!--<div class="clearfix message_code_box">-->
+					<!--<input type="text" class="message_code myfl" name="validCode" maxlength="6" placeholder="请输入短信验证码" value=""/>-->
+					<!--<a href="javascript:;" class="message_code_btn myfr">发送验证码</a>-->
+					<!--<span class="message_code_again"><em>60</em>秒重发</span>-->
+					<!--</div>-->
+					<p style="border-bottom: 1px solid #eaeaea;width: 338px;padding-top: 20px;">
+						<input type="tel" placeholder="输入6位短信验证码" style="padding-left:0;width: 234px;border-bottom: none;margin-left: 0" id="message_code"
+						 name="validCode" maxlength="6" value="" />
+						<span class="getcode" style="color: #ff366f;font-size: 14px;vertical-align: top;margin-top: 14px;cursor: pointer">获取短信验证码</span>
+						<span class="getcodedelaysand" style="display: none; color: #666;font-size: 14px;vertical-align: top;margin-top: 14px;cursor: pointer">
+							<em></em>秒后重发</span>
+					</p>
+					<p class="errortype"></p>
+					<a href="javascript:;" class="submit_btn">注册</a>
+					<div class="my_agreement">
+						<input type="checkbox" name="agreement" value="1" checked>我已仔细阅读并同意接受
+						<a href="/html/home/user_protocolB.html" target="_blank">《拉趣网服务协议（用户版）》</a>
+						<br>
+						<em style="margin-left: 23px;">和</em>
+						<a href="/html/home/user_protocolA.html" target="_blank">《拉趣网用户规则》</a>
+					</div>
+					<!--短信的token-->
+					<input type="hidden" name="token" value="ebdd2915ef74b706fbd3755d323c7664" id="tonkenNum"> </div>
+			</form>
+		</div>
+		<!--错误提示-->
+		<div class="normal_pop pop_password" id="pop_load">
+			<h3>提示</h3>
+			<p class="error" style="font-size: 20px;line-height: 24px;margin: 40px 0 36px;color: #666;">注册失败，请稍后再试</p>
+			<i id="true_btn" class="layui-layer-close">确定</i>
+		</div>
+		<div class="register_bottom">Copright &nbsp;&nbsp;2017杭州拉趣科技有限公司 &nbsp;&nbsp;浙ICP17003883号-1 &nbsp;&nbsp;版权所有</div>
+	</body>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="js/jquery.form.js"></script>
+	<script type="text/javascript" charset="utf-8" src="layer/layer.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/web_method/method.js?v=201893656"></script>
+	<script type="text/javascript" charset="UTF-8" src="js/login_register/user_register.js?v=20189311"></script>
+</html>

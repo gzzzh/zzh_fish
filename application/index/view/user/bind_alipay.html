@@ -1,0 +1,109 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="{$Think.INDEX_STYLE}css/user.css" />
+<header style="background: #ffffff;">
+	<div class="main clearfix">
+		<h1 class="laqu_logo">
+			<a href="/index">
+				<img src="{$Think.INDEX_STYLE}/img/home/laqu_logo.png" alt="图片加载失败" style="margin-top: -10px;"> </a>
+		</h1>
+		<span class="background_name">
+			<a href="/user-index" style="color:#666666;">用户管理中心</a>
+		</span>
+	</div>
+</header>
+<div class="fundManage_bag row">
+	<!--内容层1200居中-->
+	<div class="main clearfix" style="margin: 20px auto;">
+		<!--左侧下拉列表-->
+		{include file="public/nav_menu"/}
+		<!---左侧内容结束----->
+
+		<!--右侧内容部分-->
+		<div class="fundAccount_right myfr">
+			<!--右侧标题的结构-->
+			<span class="fundAccount_right_title">支付宝绑定</span>
+			<em class="fundAccount_right_careful">
+				<span></span>请注意：1、绑定的账号必须与支付宝账户一致，如提交的账户不一致导致无法打款，网站概不负责!如有问题，欢迎加群咨询；
+				<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、如遇到特殊情况涉及支付安全，拉趣有权在以上凭证基础上要求用户提供其他辅助凭证！
+				<br> </em>
+			<ul class="alipay-bind">
+				<form action="/uc/alipay" id="myform" method="post" enctype="multipart/form-data">
+					<li class="fundAccount_cash_a">
+						<span>姓名：</span>
+						<input type="text" id="alipay-bind_name" name="name">姓名必须与支付宝认证的姓名一致！ </li>
+					<li class="fundAccount_cash_error">
+						<i>姓名不能为空</i>
+						<em class="fundAcount_error_a"></em>
+					</li>
+					<li class="fundAccount_cash_b">
+						<span>支付宝账户：</span>
+						<input type="text" id="alipay-bind_account" name="account"> </li>
+					<li class="fundAccount_cash_error">
+						<i>支付宝账户不能为空</i>
+						<em class="fundAcount_error_b"></em>
+					</li>
+					<li style="height: 110px;">
+						<span>支付宝账户截图：</span>
+						<div class="pic webuploader-container" 
+							id="pay_pic_first" style="line-height: 120px;z-index: 9999999">
+							<div class="webuploader-pick">
+								<img class="pay_pic_first" 
+									id="alipay_show_img"
+									src="{$Think.INDEX_STYLE}img/pay_pic_again.png" style="width: 98px;height: 98px">
+								<i class="wrong"></i>
+							</div>
+							<div id="rt_rt_1cvlbvi254pms441c7rks1fm61" 
+								style="position: absolute; top: 0px; left: 0px; width: 98px; height: 120px; overflow: hidden; bottom: auto; right: auto;">
+								<input type="file" 
+									name="alipay_imgs" 
+									class="webuploader-element-invisible" 
+									multiple="multiple" 
+									id="alipay_img"
+									accept="image/jpg,image/jpeg,image/png">
+								<label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+							</div>
+						</div>
+						
+						<div style="display: inline-block;font-size: 12px;vertical-align: top;">
+							<p class="activityIssue_tip" style="line-height:20px;background-position:0 2px">上传提示:</p>
+							<p class="activityIssue_tipDetail" style="height: 20px;line-height: 20px;">1、支付宝截图至少上传1张，每张图片大小不超过2M；</p>
+							<p class="activityIssue_tipDetail" style="height: 20px;line-height: 20px;">2、图片仅支持：PNG、JPEG、JPG 格式；</p>
+							<p class="activityIssue_tipDetail">3、截图中显示的淘宝会员需要与您在拉趣绑定的淘宝会员；</p>
+							<p class="tip">查看截图示例</p>
+						</div>
+					</li>
+					<li class="fundAccount_cash_error">
+						<i>支付宝账户截图不能为空</i>
+						<em class="fundAcount_error_c"></em>
+					</li>
+
+					<li style="margin-top: 45px">
+						<button type="submit" id="form_click">提交</button>
+					</li>
+				</form>
+				<!--短信-->
+				<input type="hidden" name="token" value="d49808680b9860a073d5d7d19143034c" id="tonkenNum"> </ul>
+		</div>
+	</div>
+</div>
+<script>
+	$('#alipay_img').on('change', function () {
+		var objUrl = getObjectURL(this.files[0]);
+		if(objUrl){
+			$("#alipay_show_img").attr("src",objUrl);
+		}
+	});
+	
+	function getObjectURL(file) {
+		var url = null ;
+		if (window.createObjectURL!=undefined) { // basic
+		  url = window.createObjectURL(file) ;
+		} else if (window.URL!=undefined) { // mozilla(firefox)
+		  url = window.URL.createObjectURL(file) ;
+		} else if (window.webkitURL!=undefined) { // webkit or chrome
+		  url = window.webkitURL.createObjectURL(file) ;
+		}
+		return url ;
+	};
+</script>
+</div> {include file="public/footer"/}

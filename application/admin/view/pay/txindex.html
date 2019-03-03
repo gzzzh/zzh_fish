@@ -1,0 +1,79 @@
+{include file="public/left" /}
+<!--/sidebar-->
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:url('admin/Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">提现审核</span></div>
+    </div>
+    <div class="search-wrap">
+        <div class="search-content">
+            <form action="{:url('admin/pay/txIndex')}" id="myform" name="myform" method="post">
+                <table class="search-tab">
+                    <tr>
+                        <td width="70">状态:</td>
+                        <td>
+                            <select name="status">
+                                <option value="0">未审核</option>
+                                <option value="1">通过</option>
+                                <option value="-1">驳回</option>
+                            </select>
+                        </td>
+
+                        <td><input class="btn btn-primary btn2"  value="查询" type="submit"></td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+    </div>
+    <div class="result-wrap">
+        <div class="result-content">
+            <table class="result-tab" width="100%">
+                <tr>
+                    <th>UID</th>
+                    <th>可用余额 | 冻结金额</th>
+                    <th>提现金额</th>
+                    <th>提现IP</th>
+                    <th>提现账号</th>
+                    <th>提交时间</th>
+                    <th>审核人</th>
+                    <th>审核时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                {foreach name='list' id='vo'}
+                <tr>
+                    <td>{$vo['userid']}</td>
+                    <td>{$vo['user_money']} | {$vo['user_frozen_money']}</td>
+                    <td>{$vo['money']}</td>
+                    <td>{$vo['ip']}</td>
+                    <td>{$vo['cash_alipay_username']}</td>
+                    <td>{$vo['inputtime']}</td>
+                    <td>{$vo['audit_admin']}</td>
+                    <td>{$vo['check_time']}</td>
+                    <td>
+                        {if condition="$vo['status'] eq 1"}<span style="color: green">已通过</span>
+                        {elseif condition="$vo['status'] eq -1"} <span style="color: red">驳回</span>
+                        {else/}
+                        未审核
+                        {/if}
+                    </td>
+                    <td>
+                        {if condition="$vo.status eq 0"}
+                        <a href="{:url('admin/pay/txPass',['id' => $vo['id'],'userid' => $vo['userid'],'type' => 'pass'])}" onClick="return confirm('确定通过审核?');">通过</a>
+                        <a href="{:url('admin/pay/txPass',['id' => $vo['id'],'userid' => $vo['userid'],'type' => 'reject'])}" onClick="return confirm('确定驳回审核?');">驳回</a>
+                        {/if}
+                    </td>
+                </tr>
+                {/foreach}
+            </table>
+            <div class="list-page"> <ul>{$page}</ul></div>
+
+        </div>
+    </div>
+</div>
+<!--/main-->
+</div>
+<script>
+</script>
+</body>
+</html>

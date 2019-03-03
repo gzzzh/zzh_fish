@@ -1,0 +1,211 @@
+{include file="public/header"/}
+<link rel="stylesheet" type="text/css" href="{$Think.INDEX_STYLE}css/user.css">
+<body> {include file="public/top_nav_menu"/} {include file="public/search_menu"/}
+	<div class="main" style="margin-top: 20px;">
+		<div class="trialDetail_bg clearfix" style="padding:0 0 50px 0">
+			<div class="main mainm clearfix">
+				<div class="activityApply_topTip">
+					<h1>注意事项：</h1>
+					<p>1、当天10点后申请活动的，系统将于第二天早上10点、晚上9:10分别开奖。</p>
+					<p>2、申请者切勿私自用旺旺等聊天工具与卖家联系，一经发现则取消活动资格！</p>
+					<p>3、如有特殊情况，请联系客服
+						<a href="javascript:;" class="userqiyu_access activityApply_QQBtn" target="_blank">QQ交谈。</a>
+					</p>
+					<p>4、请严格按照活动要求来选购活动商品。</p>
+				</div>
+				<div class="clearfix" style="background:#fff;width: 1200px;">
+					<!-- 左侧时间轴 -->
+					<div class="activityApply_timerShaft">
+						<div class="timerShaft_list on clearfix">
+							<span class="No">第1天</span>
+							<div class="act" style="border:none"> 加购并收藏宝贝
+								<div class="point"></div>
+							</div>
+						</div>
+					</div>
+					<!-- 右侧内容 -->
+					<div class="activityApply_rightmain">
+						<p class="activityApply_title">
+							<span>申请活动</span>
+							<span>请完成以下步骤获得领奖资格！</span>
+						</p>
+						<div style="padding:10px 30px 100px 30px">
+							<form action="/applyfor" method="post">
+								<p class="activityApply_timeTip"> 请在
+									<em class="showDate">{$todays}</em>前完成并提交活动申请，通过搜索找到完成申请，提升20%中奖率 </p>
+								<div class="activityApply_list clearfix">
+									<span>第一步：</span>
+									<p>请打开
+										<em>淘宝</em>地址
+										<em class="siteUrl">www.taobao.com </em>登录淘宝账号
+										<em style="font-weight:bold"></em>，刷新页面确保已登录</p>
+								</div>
+								<div class="activityApply_list clearfix">
+									<span>第二步：</span>
+									<p>请在
+										<em class="siteType_url">淘宝 www.taobao.com </em> 首页的搜索框内输入关键词：
+										<em class="keyword" style="cursor: default;" id='show_key_world'>{$task_label[0]|default=''}</em>
+									</p>
+									<ul id='keyWord' style="display: none;">
+										{foreach $task_label as $vo}
+											<li class="keywords">{$vo}</li>
+										{/foreach}
+									</ul>
+									<a href="javascript:void(0)" class="activityApply_changeBtn" onclick="changeKeyword()">点击换一个</a>
+									<h6>找不到？点击按钮换一个</h6>
+								</div>
+								<div class="activityApply_list clearfix">
+									<span>第三步：</span>
+									<p>在搜索结果的列表页面，通过以下条件找到商品</p>
+								</div>
+								<div class="activityApply_list_findGoods" style="padding-left: 57px;">
+									<div>排序方式：
+										<em>
+											{if condition='$tInfo.sortord eq 1'}
+												综合排序
+											{elseif condition='$tInfo.sortord eq 2'}
+												信用
+											{elseif condition='$tInfo.sortord eq 3'}
+												销量
+											{elseif condition='$tInfo.sortord eq 4'}
+												降序
+											{elseif condition='$tInfo.sortord eq 5'}
+												升序
+											{/if}
+										</em>
+									</div>
+									<div class="clearfix">
+										<span class="myfl">店铺名称：</span>
+										<em style="display:block;width:180px;float:left" class="mosaic">{$mInfo.store_name}</em>
+										<b style="color:#ff5757;font-weight:normal;font-size:12px;float:left">注：禁止搜索商家店铺名进店，一旦发现立即拉黑，永不中奖！</b>
+									</div>
+									<div class="clearfix">
+										<span class="myfl">掌柜旺旺：</span>
+										<em style="display:block;width:180px;float:left" class="mosaic1">{$mInfo.wang_name}</em>
+										<b style="color:#ff5757;font-weight:normal;font-size:12px;float:left">注：禁止搜索掌柜旺旺进店，一旦发现立即拉黑，永不中奖！</b>
+									</div>
+									<div class="clearfix">
+										<span class="myfl">商品价格：</span>
+										<em style="display:block;width:180px;float:left">￥{$tInfo.product_price}</em>
+										<b style="color:#ff5757;font-weight:normal;font-size:12px;float:left">注：禁止擅自卡价搜索商品，一旦发现立即拉黑，永不中奖！</b>
+									</div>
+									<div class="clearfix">
+										<span class="myfl" style="line-height:160px">宝贝主图：</span>
+										<img class="goodsPic" src="{$tInfo.product_logo}"> </div>
+								</div>
+								<div class="activityApply_list clearfix" style="margin-top: 20px;">
+									<span>第四步：</span>
+									<p>请进入商品详情页，浏览商品详情
+										<em>不少于3分钟</em>，复制并核对目标宝贝的
+										<em>淘宝链接</em>！</p>
+										{$tInfo.product_link}
+								</div>
+								<div class="clearfix" style="margin-left: 37px;margin-top: 20px;position: relative;">
+									<span class="myfl" style="line-height:42px;margin-left:19px;color: #666666;">
+										核对链接：&nbsp;&nbsp;&nbsp;&nbsp;<em class="wongwong" style="display: none"></em>&nbsp;&nbsp;&nbsp;
+									</span>
+									<input style="width:334px;text-align:left;float: left;height: 42px;border: 1px solid #eaeaea; font-size: 14px;border-radius: 4px;padding-left: 10px;outline: none;"
+									 type="text" placeholder="请复制淘宝链接到此处" id="auth_code1">
+									 <p class="check_tips" id='check_tips'></p>
+									<a href="javascript:;" class="activityApply_checkBtn" id="checkURL">核对</a>
+								</div>
+								<p class="activityApply_status" style="margin-left: 155px;margin-bottom: 20px;"></p>
+								<div class="activityApply_list clearfix">
+									<span>第五步：</span>
+									<p>核对正确后请回到淘宝，
+										<em>收藏宝贝</em>并且
+										<em>把宝贝加入购物车</em>，方便中奖后找到宝贝</p>
+								</div>
+								<p style="height: 34px;line-height: 34px;color: #666;">
+									<label>
+										<input style="margin-left: 56px;" type="checkbox" class="check_collect1" id="join_collection">确定已完成宝贝收藏</label>
+									<label>
+										<input type="checkbox" class="check_collect2" style="margin-left: 56px;" id="join_shopping_cart">确定已完成宝贝加购</label>
+								</p>
+								<p class="collectstuis">
+									<span class="collectstuis1" style=" background: url(/img/base/icon_warn.png) no-repeat left center;padding-left: 20px;color: #ff5757;margin-left: 55px;">请确认完成</span>
+									<span class="collectstuis2" style="background: url(/img/base/icon_warn.png) no-repeat left center;padding-left: 20px;color: #ff5757;margin-left: 105px;">请确认完成</span>
+								</p>
+								<input type="hidden" value="{$tInfo.id}" id='targetId' name="tid"/>
+								<input type="submit" onclick="submitUserApply()" value="已加入购物车，下一步"
+								 id="apply_for_link" class="activityApply_apply_Btn" disabled="true">
+							</form>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var step_status = {
+				check: 1,
+				cellction: 1,
+				shoppingCard: 1
+			};
+			 $('#checkURL').on('click', function () {
+			 	var urls = $('#auth_code1').val();
+			 	var id = $('#targetId').val();
+			 	$('#check_tips').html('');
+			 	$.ajax({
+			 		type:"post",
+			 		url:'http://39.108.99.113/ck/taskurl',
+			 		data: {tid: id, product_link: urls},
+			 		success: function (response) {
+			 			response = JSON.parse(response);
+			 			$('#check_tips').html(response.msg);
+			 			step_status.check = response.code;
+			 			stepStatus();
+			 		}
+			 	});
+			 })
+			 $('#join_collection').on('click', function () {
+			 		if ($('#join_collection').prop('checked')) {
+			 			step_status.cellction = 0;
+			 		} else {
+			 			step_status.cellction = 1;
+			 		}
+			 		stepStatus();
+			 });
+			 $('#join_shopping_cart').on('click', function () {
+			 		if ($('#join_shopping_cart').prop('checked')) {
+			 			step_status.shoppingCard = 0;
+			 		} else {
+			 			step_status.shoppingCard = 1;
+			 		}
+			 		stepStatus();
+			 });
+
+			 function stepStatus() {
+			 	$('#apply_for_link').css({background: '#C62F2F'})
+			 	$('#apply_for_link').attr('disabled', false);
+			 	for(status in step_status) {
+			 		if (step_status[status] === 1) {
+			 			$('#apply_for_link').css({background: '#666'})
+			 			$('#apply_for_link').attr('disabled', true);
+			 		}
+			 	}
+			 }
+			 
+			 function changeKeyword() {
+				var keywords = [];
+			 	$('#keyWord>li').each(function () {
+			 		var html = $(this).text();
+			 		keywords.push(html);
+			 	});
+			 	var keys = parseInt(Math.random() * keywords.length);
+			 	var randomKeyWord = keywords[keys];
+			 	$('#show_key_world').html(randomKeyWord);
+			 }
+			 function submitUserApply() {
+			 	 var id = $('#targetId').val();
+			 	 $.ajax({
+			 	 	type:"post",
+			 	 	url:"http://39.108.99.113/applyfor",
+			 	 	data: {tid: id},
+			 	 	success: function (response) {
+			 	 		console.log(response);
+			 	 	}
+			 	 });
+			 }
+		</script>
+	</div> {include file="public/footer"/}

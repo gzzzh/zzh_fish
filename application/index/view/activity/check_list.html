@@ -1,0 +1,86 @@
+{include file="public/header"/} </head>
+<body>
+{include file="public/base_message_title"/}
+<div class="userControl_bg" style="padding:20px 0 40px 0">
+    <div class="main userControl">
+        <!-- 主要内容 -->
+        <div class="clearfix">
+            <!--左侧下拉列表-->{include file="public/nav_menu"/}
+            <!---左侧内容结束----->
+            <!-- 右侧内容 -->
+            <p>活动名称: {$info.product_name}</p>
+            <div class="shopBind_right myfl">
+                <table>
+                    <tr>
+                        <td width="20%">淘宝账号</td>
+                        <td width="10%">买家标签</td>
+                        <td width="10%">买家属性</td>
+                        <td width="10%">淘气值</td>
+                        <td width="5%">订单号</td>
+                        <td width="30%">状态</td>
+                        <td width="15%">中奖时间</td>
+                        <td width="20%">操作</td>
+                    </tr>
+
+                    {foreach name ='list' item ='vo'}
+                    <tr>
+                        <td>{$vo.account}</td>
+                        <td>
+                            {$vo.property}
+                            <br>
+                            {$vo.property1}
+                        </td>
+                        <td>{$vo.sex} <br>  {$vo.age}</td>
+                        <td>{$vo.wn_value}</td>
+                        <td>{$vo.order_sn}</td>
+                        <td>
+                            {if condition="$vo.status eq -1"}
+                                过期失效
+                            {elseif condition="$vo.status eq 0"}
+                                关闭订单
+                            {elseif condition="$vo.status eq 1"}
+                                已申请
+                            {elseif condition="$vo.status eq 2"}
+                                获得资格，等待用户下单
+                            {elseif condition="$vo.status eq 3"}
+                                下订单
+                            {elseif condition="$vo.status eq 4"}
+                                驳回图片，等待用户重传
+                            {elseif condition="$vo.status eq 5"}
+                                通过
+                            {elseif condition="$vo.status eq 6"}
+                                用户申诉中
+                            {elseif condition="$vo.status eq 7"}
+                                已完成
+                            {elseif condition="$vo.status eq 8"}
+                                已上传试用报告
+                            {/if}
+                        </td>
+                        <td>{$vo.winning_time}</td>
+
+
+                        <td>
+                            {if condition="$vo.status eq 1"}
+                                <a href="/task/allot/{$vo.id}/{$vo.user_id}/{$page}"  onClick="return confirm('确定分配资格?');" >分配资格</a>
+                            {elseif condition="$vo.status eq 2"}
+                                <a href="/task/unallot/{$vo.id}/{$vo.user_id}/{$page}" onClick="return confirm('确定取消资格?');">取消资格</a>
+                            {elseif condition="$vo.status eq 3"}
+                                <a href="/task/unallot/{$vo.id}/{$vo.user_id}/{$page}" onClick="return confirm('确定取消资格?');">取消资格</a>
+                            {elseif condition="$vo.status eq 8"}
+                                <a href="/task/pass/{$vo.id}/{$vo.user_id}/{$page}" onClick="return confirm('确定通过提交?');">通过</a>
+                                <a href="/task/reject/{$vo.id}/{$vo.user_id}/{$page}" onClick="return confirm('确定驳回提交?');">驳回</a>
+                                <a href="/task/unallot/{$vo.id}/{$vo.user_id}/{$page}" onClick="return confirm('确定取消资格?');">取消资格</a>
+                            {/if}
+                        </td>
+                    </tr>
+                    {/foreach}
+                </table>
+            </div>
+            <div>
+                当前页: {$page}
+                总数量: {$counts.counts}
+                总页数: {$counts.pageCount}
+            </div>
+        </div>
+    </div>
+</div> {include file="public/footer"/}

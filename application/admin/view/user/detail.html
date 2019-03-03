@@ -1,0 +1,118 @@
+{include file="public/left" /}
+<link rel="stylesheet" href="{$Think.DS}admin/js/layer/viewwe.min.css" />
+<script type="text/javascript" src="{$Think.DS}admin/js/layer/viewer.min.js"></script>
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:url('admin/Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">管理用户</span></div>
+    </div>
+    <div class="result-wrap">
+        <div class="result-title">
+            <div class="result-list">
+                <p><h2>基本信息</h2></p>
+            </div>
+        </div>
+        <div class="result-content">
+            <table class="result-tab" style="width:100%;border-style:none;rules;none;">
+                <tr>
+                    <td style="width:10%;text-align:left;">UID：</td>
+                    <td style="width:40%;text-align:left;">{$userinfo['id']}</td>
+
+                    <td style="width:10%;text-align:left;">账号状态</td>
+                    <td style="width:40%;text-align:left;">
+                        {if condition="$userinfo['status'] eq 1"}正常
+                        {else/}封号
+                        {/if}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width:10%;text-align:left;">用户类型</td>
+                    <td style="width:40%;text-align:left;">{if condition="$userinfo['user_type'] eq 1"}用户{else/}商家{/if}</td>
+
+                    <td style="width:10%;text-align:left;">QQ：</td>
+                    <td style="width:40%;text-align:left;">{$userinfo['qq']|default='/'}</td>
+                </tr>
+
+                <tr>
+                    <td style="width:10%;text-align:left;">淘宝</td>
+                    <td style="width:40%;text-align:left;">
+                        {if condition="$userinfo['taobao_status'] eq 0"}未绑定
+                        {elseif condition="$userinfo['taobao_status'] eq 1"}已绑定
+                        {else/}
+                        审核中
+                        {/if}
+                    </td>
+
+                    <td style="width:10%;text-align:left;">支付宝：</td>
+                    <td style="width:40%;text-align:left;">
+                        {if condition="$userinfo['alipay_status'] eq 0"}未绑定
+                        {elseif condition="$userinfo['alipay_status'] eq 1"}绑定
+                        {else/}
+                        审核中
+                        {/if}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width:10%;text-align:left;">昵称：</td>
+                    <td style="width:40%;text-align:left;">{$userinfo['user_nickname']|default="/"}</td>
+
+                    <td style="width:10%;text-align:left;">手机号：</td>
+                    <td style="width:40%;text-align:left;">{$userinfo['mobile']|default="/"}</td>
+
+                </tr>
+                <tr>
+                    <td style="width:10%;text-align:left;">可用余额：</td>
+                    <td style="width:40%;text-align:left;">{$userinfo['money']}</td>
+
+                    <td style="width:10%;text-align:left;">冻结金额：</td>
+                    <td style="width:40%;text-align:left;">{$userinfo['frozen_money']}</td>
+                </tr>
+
+                <tr>
+                    <td style="width:10%;text-align:left;">保证金额：</td>
+                    <td style="width:40%;text-align:left;">{$userinfo['no_withdraw']}</td>
+
+                    <td style="width:10%;text-align:left;">{if condition="$userinfo['user_type'] eq 1"}第一次任务{else/}VIP商家{/if}：</td>
+                    <td style="width:40%;text-align:left;">
+                        {if condition="$userinfo['user_type'] eq 1"}
+                            {if condition="$userinfo['if_task'] eq 0"}
+                            未做过
+                            {else/}
+                            完成
+                            {/if}
+                        {else/}
+                            {if condition="$userinfo['is_vip'] eq 1"}
+                            否
+                            {else/}
+                            是
+                            {/if}
+                        {/if}
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width:10%;text-align:left;">保证金额：</td>
+                    <td style="width:40%;text-align:left;">{$userinfo['no_withdraw']}</td>
+
+                    <td style="width:10%;text-align:left;">邀请人：</td>
+                    <td style="width:40%;text-align:left;">{$inviteme['superior_agent']|default="/"}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="result-wrap">
+        <div class="result-title">
+            <div class="result-list">
+                <p>最后登入IP：{$userinfo['lastip']}&nbsp;&nbsp;&nbsp;时间：{$userinfo['lastdate']}</p>
+            </div>
+            <div class="result-list">
+                <p>注册IP：{$userinfo['regip']}&nbsp;&nbsp;&nbsp;时间：{$userinfo['create_time']}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+</script>

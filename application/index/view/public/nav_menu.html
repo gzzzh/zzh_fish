@@ -1,0 +1,72 @@
+<div class="sideMenu myfl" id="laqu_userleft_nav">
+	<h3 id="ActBind" class="on">
+		<img src="{$Think.INDEX_STYLE}/img/business/business_icon_nav7.png">
+		<span>基本信息</span>
+	</h3>
+	{if condition="$user_type eq 1"}
+		<ul style="display: block;">
+			<li id='uc'>
+				<a href="/uc">基本信息</a>
+			</li>
+			<li id='act'>
+				<a href="/act">活动管理</a>
+			</li>
+			<li id='bindtb'>
+				<a href="/uc/bindtb" class="">我的淘宝</a>
+			</li>
+			<li id='myshops'>
+				<a href="/uc/myshops" class="">淘宝列表</a>
+			</li>
+			<li id="bind">
+				<a href="/uc/bind">绑定支付宝</a>
+			</li>
+			<li id="myali">
+				<a href="/uc/myali">支付宝列表</a>
+			</li>
+		</ul>
+	{else /}
+		<ul>
+			<li id='index'>
+				<a href="/biz/index" class="">基本信息</a>
+			</li>
+			<li id='addact'>
+				<a href="/biz/addact" class="">活动发布</a>
+			</li>
+			<li id='actshops'>
+				<a href="/biz/actshops" class="">活动列表</a>
+			</li>
+			<li id='czlist'>
+				<a href="/ty/czlist">账户充值</a>
+			</li>
+			<li id='tixian'>
+				<a href="/ty/tixian">账户提现</a>
+			</li>
+			<li id='mydeal'>
+				<a href="/mydeal">财务日志</a>
+			</li>
+			<li id='bind'>
+				<a href="/uc/bind">绑定支付宝</a>
+			</li>
+		</ul>
+		<h3 id="ActBind" class="on">
+			<img src="{$Think.INDEX_STYLE}/img/business/business_icon_nav7.png">
+			<span>店铺管理</span>
+		</h3>
+		<ul>
+			<li id='myshops'>
+				<a href="/biz/myshops">我的店铺</a>
+			</li>
+			<li id='addshop'>
+				<a href="/biz/addshop">绑定店铺</a>
+			</li>
+			</li>
+		</ul>
+	{/if}
+	
+
+</div>
+<script>
+	var param = window.location.pathname.split('/');
+	param = param[param.length - 1];
+	$('#' + param).addClass('sign_dom');
+</script>
